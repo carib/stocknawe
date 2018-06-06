@@ -1,0 +1,40 @@
+.watch-list {
+  grid-column: span 2;
+  grid-row: 2 / span 6;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 2fr;
+}
+
+.watch-list__controls {
+  background-color: #F08080;
+}
+
+.list {
+  background-color: #98FB98;
+}
+
+.list-item {
+  background-color: #FFFACD;
+}
+
+/* .App-list {
+  grid-area: li;
+  background-color: #98FB98;
+}
+
+.App-chart {
+  grid-area: ch;
+  background-color: #F08080;
+}
+
+.App-feed {
+  grid-area: fe;
+  background-color: #66CDAA;
+  overflow-y: scroll;
+}
+
+.App-detail {
+  grid-area: de;
+  background-color: #FFFACD;
+} */
