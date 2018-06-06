@@ -8,7 +8,10 @@ class WatchList extends Component {
     super(props);
     this.state = {
       watchedItems: {
-
+        'NKE': { price: '$55'},
+        'ETSY': { price: '$13'},
+        'INTU': { price: '$94'},
+        'SHAK': { price: '$36'},
       }
     }
   }
@@ -16,8 +19,12 @@ class WatchList extends Component {
   render() {
     return (
       <div className="watch-list">
-        <List items={this.state.watchedItems} />
-        <div className="watch-list__controls"></div>
+        <div className="mock__search">SEARCH BAR</div>
+        <List items={Object.entries(this.state.watchedItems)} />
+        <div className="watch-list__controls">
+          <button className="button">Add</button>
+          <button className="button">Nix</button>
+        </div>
       </div>
     )
   }

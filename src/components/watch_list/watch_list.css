@@ -4,6 +4,7 @@
   border: 1px solid black;
   display: grid;
   grid-template-columns: 2fr;
+  grid-template-rows: 50px 1fr 1fr;
 }
 
 .watch-list__controls {
@@ -12,10 +13,32 @@
 
 .list {
   background-color: #98FB98;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-auto-rows: 10%;
 }
+
 
 .list-item {
   background-color: #FFFACD;
+  border: 1px solid #dadadada;
+  border-bottom: none;
+  display: grid;
+  grid-template: 1fr / 1fr 1fr;
+  padding: 5px;
+}
+
+.list__buffer {
+  border-top: 1px solid #dadadada;
+}
+
+.list-item__title {
+  text-align: left;
+  font-weight: bold;
+}
+
+.list-item__detail {
+  text-align: right;
 }
 
 /* .App-list {
