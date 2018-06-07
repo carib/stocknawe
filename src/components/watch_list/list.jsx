@@ -17,9 +17,10 @@ export const List = (props) => {
                                       handleClick={handleClick}
                                       viewIndex={viewIndex}
                                       item={item}
+                                      isFirst={index === 0 ? true : false}
+                                      isLast={index === items.length -1 ? true : false}
                                     />)
       }
-      <div className="list__buffer"></div>
     </div>
   )
 }

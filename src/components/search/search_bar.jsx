@@ -14,7 +14,7 @@ export const SearchBar = (props) => {
         <input className='search-bar__input'
           value={ props.value }
           onChange={ props.onChange } />
-        <button className='button' onClick={ props.onClick }>Search</button>
+        <button className='button__search' onClick={ props.onClick }>Search</button>
       </form>
     </div>
   )

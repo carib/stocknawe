@@ -7,6 +7,7 @@ import { List } from './list';
 import { SearchBar } from '../search/search_bar';
 
 import * as Mock from '../mock_values/mock_user_values';
+import * as SVG from '../../svg_util';
 
 import './watch_list.css';
 
@@ -33,7 +34,7 @@ class WatchList extends Component {
   }
 
   initList() {
-    let watchedItems = _.assign({}, Mock.watchList); // NB: This would be user's saved list.
+    let watchedItems = _.assign({}, Mock.watchList); // NB: Would be User's saved list.
     this.fetchStocksData(Object.keys(watchedItems))
       .then(res => {
         let watchedItems = res.data;
@@ -50,7 +51,9 @@ class WatchList extends Component {
     this.fetchAvailable()
       .then(res => {
         let availableStocks = res.data;
+        let selected = document.getElementsByClassName('selected')[0];
         this.setState(availableStocks);
+
       })
       .catch(error => console.log(error))
   }
@@ -77,6 +80,7 @@ class WatchList extends Component {
   }
 
   handleClick(e) {
+    console.log('CLICK!');
     if (e) {
       e.preventDefault();
     }
@@ -128,9 +132,15 @@ class WatchList extends Component {
             viewIndex={viewIndex}
           />
 
-        <div className="watch-list__controls">
-            <button className="button">Add</button>
-            <button className="button">Nix</button>
+          <div className="watch-list__controls">
+            <div className="button-wrap">
+              <button className="button__watch-list" onClick={this.handleClick}>
+                <SVG.moreButton />
+              </button>
+              <button className="button__watch-list" onClick={this.handleClick}>
+                <SVG.lessButton />
+              </button>
+            </div>
           </div>
         </div>
       )

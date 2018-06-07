@@ -1,8 +1,54 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Lato:100,200,300,400,700");
+
+:root {
+  --md-aqua:     #66CDAA;
+  --dk-cyan:     #19838d;
+  --pale-grn:    #98FB98;
+  --lt-coral:    #F08080;
+  --lt-chiff:    #FFFACD;
+
+  --lt-border:   #dadadada;
+  --icon-font:   #9F9F9F;
+  --float-shade: #b1b1b19c;
+
+  --stock-pos:   #00FF7F;
+  --stock-neg:   #F03A3A;
+}
 
 html, body, #root, .App {
   width: 100%;
   height: 100%;
+}
+
+input {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-weight: 100;
+  text-indent: 5px;
+  color: var(--icon-font);
+}
+
+button {
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  text-align: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+
+  font-family: 'Lato';
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--icon-font);
+  cursor: pointer;
 }
 
 
@@ -21,10 +67,10 @@ html, body, #root, .App {
   grid-row: span 1;
 }
 
-[class^="mock"] {
+[class^='mock'] {
   background-color: #696969;
 }
 
-.button {
+[class^='button'] {
   cursor: pointer;
 }
