@@ -1,9 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import _ from 'lodash';
 
 export const ListItem = (props) => {
-  const { item, handleClick, viewIndex, isFirst, isLast } = props;
+  const { item,
+    handleClick,
+    viewIndex,
+    isFirst,
+    isLast,
+    setSelected
+  } = props;
   const { quote } = item[1];
   const symbol = quote.symbol;
   const detailViews = [
@@ -26,23 +33,25 @@ export const ListItem = (props) => {
     viewColor = 'negative'
   }
 
-  return (
-    <div className={isLast || isFirst ? orderClass : "list-item"} onClick={handleItemClick}>
-      <div className="list-item__title">{symbol}</div>
-      <div className="list-item__price">{`$${quote.latestPrice}`}</div>
-      <div className={`list-item__detail-${viewColor}`} onClick={handleClick.bind(this)}>{detailViews[viewIndex]}</div>
-    </div>
-  )
-}
+  function handleItemClick(e) {
+    let selected = document.getElementsByClassName('selected')[0];
+    let next = e.currentTarget.firstChild;
+    next.classList.add('selected');
+    setSelected(item)
+    if (selected) {
+      selected.classList.remove('selected');
+    }
+  }
 
-function handleItemClick(e) {
-  if (e) {
-    e.preventDefault();
-  }
-  let selected = document.getElementsByClassName('selected')[0];
-  let item = e.currentTarget;
-  item.classList.add('selected');
-  if (selected) {
-    selected.classList.remove('selected');
-  }
+  return (
+    <Link to={`/stocks/${symbol}`} onClick={handleItemClick}>
+      <div className={isLast || isFirst ? orderClass : "list-item"}>
+        <div className="list-item__title">
+          {symbol}
+        </div>
+        <div className="list-item__price">{`$${quote.latestPrice}`}</div>
+        <div className={`list-item__detail-${viewColor}`} onClick={handleClick.bind(this)}>{detailViews[viewIndex]}</div>
+      </div>
+    </Link>
+  )
 }

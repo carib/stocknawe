@@ -1,12 +1,15 @@
 .watch-list {
   overflow: hidden;
-  grid-column: span 2;
-  grid-row: 2 / span 6;
   display: grid;
-  min-width: 265px;
+  width: 100%;
+  height: 100%;
   grid-template-columns: 2fr;
-  grid-template-rows: auto 1fr 1fr;
+  grid-template-rows: auto auto 1fr 1fr;
   box-shadow: 1px 0px 20px 0px var(--float-shade);
+}
+
+.closed {
+  display: none;
 }
 
 .watch-list__search {
@@ -15,8 +18,7 @@
 }
 
 .list {
-  overflow-y: hidden;
-  overflow-x: visible;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 100%;
   grid-auto-rows: 12%;
@@ -33,7 +35,8 @@
   grid-template: 1fr / 1fr 2fr 1fr;
   padding: 5px;
   transform: none;
-  box-shadow: none;
+  /* box-shadow: none; */
+  box-shadow: 0px 0px 5px 0px var(--rest-shade);
   cursor: pointer;
   transition: transform, box-shadow 500ms ease;
 }
@@ -71,6 +74,7 @@
 }
 
 [class^="list-item__detail"] {
+  z-index: 4;
   text-align: center;
   cursor: pointer;
   border-radius: 3px;

@@ -9,6 +9,7 @@
 
   --lt-border:   #dadadada;
   --icon-font:   #9F9F9F;
+  --rest-shade:  #e1e0e0;
   --float-shade: #b1b1b19c;
 
   --stock-pos:   #00FF7F;
@@ -51,20 +52,34 @@ button {
   cursor: pointer;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .App {
   text-align: center;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 1fr;
+  grid-template-rows: repeat(9, 1fr);
+  /* grid-auto-rows: 1fr; */
   font-family: 'Lato';
 }
 
 .App-header {
   background-color: #222;
   color: white;
-  grid-column: span 12;
+  grid-column: span 1;
   grid-row: span 1;
+}
+
+.sidebar {
+  grid-row: 2 / span 8;
+}
+
+.content {
+  grid-column: span 11;
+  grid-row: span 8;
 }
 
 [class^='mock'] {

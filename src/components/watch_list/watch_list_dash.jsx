@@ -11,7 +11,6 @@ import * as SVG from '../../svg_util';
 
 import './watch_list.css';
 
-
 class WatchList extends Component {
   constructor(props) {
     super(props);
@@ -22,11 +21,13 @@ class WatchList extends Component {
       availableStocks: {},
       initialized: false,
       viewIndex: 0,
+      listOpen: true,
     }
-
+    this.toggleList = this.toggleList.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.rotateView = this.rotateView.bind(this);
+    this.handleSelection = this.handleSelection.bind(this);
   }
 
   componentWillMount() {
@@ -38,7 +39,6 @@ class WatchList extends Component {
     this.fetchStocksData(Object.keys(watchedItems))
       .then(res => {
         let watchedItems = res.data;
-        console.log(watchedItems);
         this.setState((state, props) => {
           return {
             ...state,
@@ -51,8 +51,12 @@ class WatchList extends Component {
     this.fetchAvailable()
       .then(res => {
         let availableStocks = res.data;
-        let selected = document.getElementsByClassName('selected')[0];
-        this.setState(availableStocks);
+        this.setState((state, props) => {
+          return {
+            ...state,
+            availableStocks,
+          }
+        });
 
       })
       .catch(error => console.log(error))
@@ -80,7 +84,6 @@ class WatchList extends Component {
   }
 
   handleClick(e) {
-    console.log('CLICK!');
     if (e) {
       e.preventDefault();
     }
@@ -103,7 +106,17 @@ class WatchList extends Component {
     this.setState({
       searchQuery: e.target.value
     });
-    console.log(this.state.searchQuery);
+  }
+
+  toggleList() {
+    console.log('CLICK!');
+    this.setState({
+      listOpen: !this.state.listOpen
+    })
+  }
+
+  handleSelection(stock) {
+    this.props.setSelected(stock);
   }
 
   render() {
@@ -111,13 +124,14 @@ class WatchList extends Component {
       initialized,
       searchQuery,
       watchedItems,
-      viewIndex
+      viewIndex,
+      listOpen
     } = this.state;
 
     if (initialized) {
       return (
-        <div className="watch-list">
-
+        <div className={listOpen ? 'watch-list' : 'watch-list closed'}>
+          <div className="watch-list__toggle" onClick={this.toggleList}>{'<'}</div>
           <div className="watch-list__search">
             <SearchBar
               value={searchQuery}
@@ -130,6 +144,7 @@ class WatchList extends Component {
             items={Object.entries(watchedItems)}
             rotateView={this.rotateView}
             viewIndex={viewIndex}
+            setSelected={this.handleSelection}
           />
 
           <div className="watch-list__controls">
