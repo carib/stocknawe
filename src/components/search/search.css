@@ -1,0 +1,18 @@
+.search-bar {
+  width: 100%;
+}
+
+.search-bar__icon {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.search-bar__form {
+  display: grid;
+  grid-template-columns: 15% 63% 20%;
+}
+
+.search-bar__input {
+  height: 100%;
+  outline: none;
+}

@@ -1,18 +1,35 @@
+:root {
+  --border-light: #dadadada;
+  --pale-grn: #98FB98;
+  --lt-coral: #F08080;
+  --md-aqua:  #66CDAA;
+  --lt-chiff: #FFFACD;
+}
+
+/*
+*/
+
+
 .watch-list {
   grid-column: span 2;
   grid-row: 2 / span 6;
   border: 1px solid black;
   display: grid;
+  min-width: 265px;
   grid-template-columns: 2fr;
-  grid-template-rows: 50px 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr;
 }
 
 .watch-list__controls {
   background-color: #F08080;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
 
 .list {
-  background-color: #98FB98;
+  background-color: palegreen;
   display: grid;
   grid-template-columns: 100%;
   grid-auto-rows: 10%;
@@ -21,10 +38,10 @@
 
 .list-item {
   background-color: #FFFACD;
-  border: 1px solid #dadadada;
+  border: 1px solid var(--border-light);
   border-bottom: none;
   display: grid;
-  grid-template: 1fr / 1fr 1fr;
+  grid-template: 1fr / 1fr 2fr 1fr;
   padding: 5px;
 }
 
@@ -37,27 +54,21 @@
   font-weight: bold;
 }
 
-.list-item__detail {
+.list-item__price {
+  text-align: center;
+}
+
+[class^="list-item__detail"] {
   text-align: right;
+  padding-right: 2px;
+  cursor: pointer;
+  border-radius: 3px;
 }
 
-/* .App-list {
-  grid-area: li;
-  background-color: #98FB98;
+.list-item__detail-positive {
+  background-color: #00FF7F;
 }
 
-.App-chart {
-  grid-area: ch;
-  background-color: #F08080;
+.list-item__detail-negative {
+  background-color: #F03A3A;
 }
-
-.App-feed {
-  grid-area: fe;
-  background-color: #66CDAA;
-  overflow-y: scroll;
-}
-
-.App-detail {
-  grid-area: de;
-  background-color: #FFFACD;
-} */
