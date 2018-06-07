@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
-import { List } from './list';
+import { WatchListings } from './watch_listings';
 import { SearchBar } from '../search/search_bar';
 
 import * as Mock from '../mock_values/mock_user_values';
@@ -140,7 +140,7 @@ class WatchList extends Component {
             />
           </div>
 
-          <List
+          <WatchListings
             items={Object.entries(watchedItems)}
             rotateView={this.rotateView}
             viewIndex={viewIndex}

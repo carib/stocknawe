@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import _ from 'lodash';
 
-export const ListItem = (props) => {
+export const WatchListItem = (props) => {
   const { item,
     handleClick,
     viewIndex,

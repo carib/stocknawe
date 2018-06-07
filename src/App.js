@@ -45,10 +45,9 @@ class App extends React.Component {
           <div className="sidebar">
             <WatchList setSelected={this.setSelected}/>
           </div>
-          <div className="content">
-            <Route path="/stocks/:symbol"
-              render={(props) => <StockView {...props} selectedStock={this.state.selectedStock}/>} />
-          </div>
+          <Route path="/stocks/:symbol"
+            render={(props) => <StockView {...props} selectedStock={this.state.selectedStock}/>} />
+          
         </main>
       </Router>
     );

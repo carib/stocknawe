@@ -7,8 +7,6 @@ import _ from 'lodash';
 const StockChart = (props) => {
   const { chart, quote } = props.stock;
   const cLength = chart.length
-  console.log(props);
-  // debugger
   const data = {
     labels: chart.slice(cLength - 7, cLength).map(date => `${date.label}`),
     datasets: [
@@ -16,35 +14,48 @@ const StockChart = (props) => {
         label: `High`,
         data: Object.values(chart).slice(0,7).map(date => _.round(date.high, 2)),
         fill: true,
+        borderColor: '#00FF7F',
         pointBorderColor: '#00FF7F',
         pointStyle: 'cross',
+        pointRadius: 5,
         borderWidth: 1,
-        showLine: true,
+        showLine: false,
       },
       {
         label: `Low`,
         data: Object.values(chart).slice(0,7).map(date => _.round(date.low, 2)),
         fill: true,
+        borderColor: 'tomato',
         pointBorderColor: 'tomato',
         pointStyle: 'cross',
+        pointRadius: 5,
         borderWidth: 1,
-        showLine: true,
+        showLine: false,
       }
     ]
   }
   console.log(data);
   const options = {
-    maintainAspectRatio: false,
     responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 100,
+      }
+    },
     title: {
-      display: true,
-      text: `${props.stock.quote.symbol} Daily Performance`
+      display: false,
+      text: `${quote.symbol}`
     },
     tooltips: {
       mode: 'label'
     },
     legend: {
       display: true,
+      // position: 'bottom',
       labels: {
         usePointStyle: true
       }
@@ -80,7 +91,7 @@ const StockChart = (props) => {
   }
 
   return (
-    <Line data={data} options={options} width={600} height={400}/>
+    <Line data={data} options={options} width={600} height={400} redraw={true}/>
   )
 }
 

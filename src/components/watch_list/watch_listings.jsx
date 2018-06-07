@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { ListItem } from './list_item';
+import { WatchListItem } from './watch_list_item';
 
-export const List = (props) => {
+export const WatchListings = (props) => {
   const { items, rotateView, viewIndex, setSelected } = props;
 
   function handleClick(e) {
@@ -13,7 +13,7 @@ export const List = (props) => {
   return (
     <div className="list">
       {
-        items.map((item, index) => <ListItem key={index}
+        items.map((item, index) => <WatchListItem key={index}
                                       setSelected={setSelected}
                                       handleClick={handleClick}
                                       viewIndex={viewIndex}

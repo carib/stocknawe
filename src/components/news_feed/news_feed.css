@@ -1,0 +1,43 @@
+.news-feed {
+  overflow-y: scroll;
+  /* grid-column: span 7;
+  grid-auto-rows: 1fr; */
+}
+
+
+.feed-item {
+  font-family: 'Lato';
+  width: 96%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid #dadadada;
+  border-bottom: none;
+}
+
+.feed-item__head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 10% 40%;
+  text-align: left;
+  font-weight: bold;
+}
+
+.feed-item__title {
+  font-size: 16px;
+}
+
+.feed-item__source {
+  font-weight: bold;
+}
+
+.feed-item__date {
+  text-align: right;
+}
+
+.feed-item__description {
+  padding-left: 10px;
+  text-align: left;
+  font-size: 14px;
+}
