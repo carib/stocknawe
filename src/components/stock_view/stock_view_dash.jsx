@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 // import _ from 'lodash';
 
+import StockChart from './stock_chart';
 // import * as Mock from '../mock_values/mock_user_values';
 // import * as SVG from '../../svg_util';
 
@@ -17,10 +18,6 @@ class StockView extends Component {
       stock: {},
       onView: false,
     }
-  }
-
-  componentDidMount() {
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,7 +37,9 @@ class StockView extends Component {
         <div className="stock-view">
           <div className="stock-view__title">{stock.quote.companyName}</div>
           <div className="mock__chart">
-            <div className="mock__chart-view">CHART</div>
+            <div className="mock__chart-view">
+              <StockChart stock={stock} />
+            </div>
             <div className="mock__chart-controls">CONTROL</div>
           </div>
           <div className="mock__feed">FEED</div>

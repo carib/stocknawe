@@ -19,6 +19,8 @@
 .mock__chart-view {
   grid-column: span 3;
   grid-row: span 4;
+  display: flex;
+  justify-content: center;
 }
 
 .mock__chart-controls {

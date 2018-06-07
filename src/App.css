@@ -21,6 +21,10 @@ html, body, #root, .App {
   height: 100%;
 }
 
+canvas {
+  width: 95% !important;
+}
+
 input {
   border: none;
   outline: none;
@@ -78,6 +82,7 @@ a {
 }
 
 .content {
+  overflow: hidden;
   display: grid;
   grid-column: span 11;
   grid-row: span 8;

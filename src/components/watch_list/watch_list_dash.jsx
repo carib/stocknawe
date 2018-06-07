@@ -76,7 +76,7 @@ class WatchList extends Component {
     const url = `https://api.iextrading.com/1.0/stock/market/batch?` +
                 `symbols=${symbols}` +
                 `&types=quote,news,chart` +
-                `&range=dynamic` +
+                `&range=1m` +
                 `&last=5`;
     const res = await axios.get(url);
     return await res;
