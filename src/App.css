@@ -78,12 +78,14 @@ a {
 }
 
 .content {
+  display: grid;
   grid-column: span 11;
   grid-row: span 8;
 }
 
 [class^='mock'] {
-  background-color: #696969;
+  /* background-color: #696969; */
+  border: 1px solid black;
 }
 
 [class^='button'] {

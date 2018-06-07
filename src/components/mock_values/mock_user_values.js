@@ -1,7 +1,1 @@
-export const watchList = {
-  'NKE': {},
-  'ETSY': {},
-  'INTU': {},
-  'SHAK': {},
-  'USO': {},
-}
+export const watchList = ['NKE','ETSY','INTU','SHAK','USO'];

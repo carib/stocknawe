@@ -27,7 +27,6 @@ class App extends React.Component {
   }
 
   setSelected(stock) {
-    const symbol = stock[0];
     stock = _.merge({}, stock[1]);
     this.setState((state, props) => {
       return {

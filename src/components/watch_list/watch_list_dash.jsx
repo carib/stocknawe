@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import _ from 'lodash';
 
 import { List } from './list';
 import { SearchBar } from '../search/search_bar';
@@ -35,8 +34,8 @@ class WatchList extends Component {
   }
 
   initList() {
-    let watchedItems = _.assign({}, Mock.watchList); // NB: Would be User's saved list.
-    this.fetchStocksData(Object.keys(watchedItems))
+    let watchedItems = Mock.watchList; // NB: Would be User's saved list.
+    this.fetchStocksData(watchedItems)
       .then(res => {
         let watchedItems = res.data;
         this.setState((state, props) => {
@@ -87,6 +86,7 @@ class WatchList extends Component {
     if (e) {
       e.preventDefault();
     }
+
     if (this.state.searchQuery) {
       const symb = [this.state.searchQuery];
       this.fetchStocksData(symb)

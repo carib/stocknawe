@@ -22,15 +22,15 @@ export const ListItem = (props) => {
   let viewColor = 'positive';
 
   if (isLast) {
-    orderClass = 'list-item last'
+    orderClass = 'list-item last';
   }
 
   if (viewIndex === 0 && quote.changePercent < 0) {
-    viewColor = 'negative'
+    viewColor = 'negative';
   }
 
   if (viewIndex === 1 && quote.change < 0) {
-    viewColor = 'negative'
+    viewColor = 'negative';
   }
 
   function handleItemClick(e) {

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+// import { Line } from 'react-chartjs-2';
+
 // import axios from 'axios';
 // import _ from 'lodash';
 
-import * as Mock from '../mock_values/mock_user_values';
-import * as SVG from '../../svg_util';
+// import * as Mock from '../mock_values/mock_user_values';
+// import * as SVG from '../../svg_util';
 
 import './view.css';
 
@@ -18,6 +20,7 @@ class StockView extends Component {
   }
 
   componentDidMount() {
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,36 +35,28 @@ class StockView extends Component {
 
   render() {
     const { stock, onView } = this.state;
-
     if (onView) {
       return (
         <div className="stock-view">
-          <div className="">{stock.quote.companyName}</div>
-          <div className="display-selected">
+          <div className="stock-view__title">{stock.quote.companyName}</div>
+          <div className="mock__chart">
+            <div className="mock__chart-view">CHART</div>
+            <div className="mock__chart-controls">CONTROL</div>
           </div>
+          <div className="mock__feed">FEED</div>
         </div>
       )
     } else {
-      return <h1>Loading...</h1>
+      return (
+        <div className="stock-view">
+          <div className=""><h1>Welcome</h1></div>
+          <div className="mock__chart"></div>
+          <div className="mock__feed"></div>
+          <div className="mock__feed"></div>
+        </div>
+      )
     }
   }
 }
-
-// const StockView = (props) => {
-//   // debugger
-//   const stockDetails = () =>
-//   console.log();
-//   if (props.selectedStock) {
-//     return (
-//       <div className="mock__chart">
-//         <div className="">{props.match.params.symbol}</div>
-//         <div className="display-selected">
-//         </div>
-//       </div>
-//     )
-//   } else {
-//     return <h1>Loading...</h1>
-//   }
-// }
 
 export default StockView;
