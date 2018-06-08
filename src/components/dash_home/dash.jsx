@@ -11,11 +11,11 @@ export const Dashboard = (props) => {
       <div className="mock__greeting">DASHBOARD GREETING</div>
       <div className="mock__carousel">
         <div className="mock__arrow-left"><SVG.leftArrow/></div>
-        <DashWidget/>
-        <DashWidget/>
-        <DashWidget/>
-        <DashWidget/>
-        <DashWidget/>
+        <div className="mock__widget">WIDGET</div>
+        <div className="mock__widget">WIDGET</div>
+        <DashWidget watchList={props.watchList} />
+        <div className="mock__widget">WIDGET</div>
+        <div className="mock__widget">WIDGET</div>
         <div className="mock__arrow-right"><SVG.rightArrow/></div>
       </div>
       <div className="mock__ticker">TICKER</div>
