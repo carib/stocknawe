@@ -1,0 +1,65 @@
+.mock__dash {
+  grid-column: span 11;
+  grid-row: span 8;
+  display: grid;
+  grid-template-rows: 1fr 6fr 1fr;
+}
+
+.mock__carousel {
+  display: grid;
+  grid-template-columns: 50px repeat(5, 1fr) 50px;
+}
+
+.mock__widget {
+  display: grid;
+  grid-template-rows: 10% 20% 35% 35%;
+}
+
+[class^="mock__arrow-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+avgTotalVolume: 5775879
+calculationPrice: "close"
+change: 0.01
+changePercent: 0.00013
+* close: 74.76
+closeTime: 1528401692712
+companyName: "Nike Inc."
+delayedPrice: 74.76
+delayedPriceTime: 1528401692712
+extendedChange: 0.22
+extendedChangePercent: 0.00294
+extendedPrice: 74.98
+extendedPriceTime: 1528404322533
+high: 75.91
+iexAskPrice: 0
+iexAskSize: 0
+iexBidPrice: 0
+iexBidSize: 0
+iexLastUpdated: 1528401599595
+iexMarketPercent: 0.04277
+iexRealtimePrice: 74.765
+iexRealtimeSize: 200
+iexVolume: 282251
+* latestPrice: 74.76
+latestSource: "Close"
+latestTime: "June 7, 2018"
+* latestUpdate: 1528401692712
+* latestVolume: 6599275
+low: 74.65
+* marketCap: 120495132146
+* open: 74.99
+openTime: 1528378200556
+* peRatio: 31.81
+* previousClose: 74.75
+* primaryExchange: "New York Stock Exchange"
+* sector: "Consumer Cyclical"
+* symbol: "NKE"
+* week52High: 74.94
+* week52Low: 50.35
+ytdChange: 0.18434094321807543
+*/

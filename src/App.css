@@ -77,6 +77,16 @@ a {
   grid-row: span 1;
 }
 
+.home-link {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  color: black;
+  line-height: 3;
+  margin: 20px;
+  background-color: white;
+}
+
 .sidebar {
   grid-row: 2 / span 8;
 }

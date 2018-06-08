@@ -29,15 +29,12 @@ class StockView extends Component {
 
   render() {
     const { stock, onView } = this.state;
-    console.log(stock);
     if (onView) {
       return (
         <div className="content">
-
           <div className="stock-view__title">
             {`${stock.quote.companyName} (${stock.quote.symbol})`}
           </div>
-
           <div className="chart">
             <div className="chart-wrap">
               <div className="chart-tab"></div>

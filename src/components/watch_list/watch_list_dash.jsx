@@ -33,18 +33,31 @@ class WatchList extends Component {
     this.initList()
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+    const { watchedItems } = nextProps;
+    this.setState((state, props) => {
+      return {
+        ...state,
+        watchedItems,
+        initialized: true
+      }
+    })
+  }
+
   initList() {
     let watchedItems = Mock.watchList; // NB: Would be User's saved list.
     this.fetchStocksData(watchedItems)
       .then(res => {
         let watchedItems = res.data;
-        this.setState((state, props) => {
-          return {
-            ...state,
-            watchedItems,
-            initialized: true,
-          }
-        })
+        // this.setState((state, props) => {
+        //   return {
+        //     ...state,
+        //     watchedItems,
+        //     initialized: true,
+        //   }
+        // })
+        this.props.updateWatchList(watchedItems);
       })
       .catch(error => console.log(error))
     this.fetchAvailable()

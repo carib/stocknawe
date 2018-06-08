@@ -25,3 +25,21 @@ export const moreButton = () => {
     </svg>
   )
 }
+
+export const leftArrow = () => {
+  return (
+    <svg className="left-arrow" height="50" width="50" viewBox="0 0 50 50">
+      <line x1="10" y1="15" x2="15" y2="20" stroke="#565a5c" strokeWidth="2"/>
+      <line x1="10" y1="15" x2="15" y2="10" stroke="#565a5c" strokeWidth="2"/>
+    </svg>
+  )
+}
+
+export const rightArrow = () => {
+  return (
+    <svg className="left-arrow" height="50" width="50" viewBox="0 0 50 50">
+      <line x1="30" y1="15" x2="25" y2="20" stroke="#565a5c" strokeWidth="2"/>
+      <line x1="30" y1="15" x2="25" y2="10" stroke="#565a5c" strokeWidth="2"/>
+    </svg>
+  )
+}
