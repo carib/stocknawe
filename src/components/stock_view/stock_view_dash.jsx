@@ -36,7 +36,9 @@ class StockView extends Component {
 
   render() {
     const { stock, onView } = this.state;
+    console.log(stock);
     if (onView) {
+      const { date } = stock.chart;
       return (
         <div className="content">
 
@@ -45,8 +47,12 @@ class StockView extends Component {
           </div>
 
           <div className="chart">
-            <div className="chart-view">
-              <StockChart stock={stock} />
+            <div className="chart-wrap">
+              <div className="chart-tab"></div>
+              <div className="chart-view">
+                <StockChart stock={stock} />
+              </div>
+              <div className="chart-buffer"></div>
             </div>
             <div className="mock__chart-controls">
               <div className="chart-controls__options">CONTROLS</div>
@@ -54,7 +60,7 @@ class StockView extends Component {
           </div>
 
           <div className="feed-dash">
-            <NewsFeed />
+            <NewsFeed stock={stock} />
           </div>
 
         </div>

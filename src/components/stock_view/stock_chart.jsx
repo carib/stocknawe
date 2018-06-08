@@ -3,7 +3,6 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import _ from 'lodash';
 
-
 const StockChart = (props) => {
   const { chart, quote } = props.stock;
   const cLength = chart.length
@@ -34,16 +33,16 @@ const StockChart = (props) => {
       }
     ]
   }
-  console.log(data);
+
   const options = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
     layout: {
       padding: {
         left: 0,
         right: 0,
         top: 0,
-        bottom: 100,
+        bottom: 15,
       }
     },
     title: {
@@ -91,7 +90,7 @@ const StockChart = (props) => {
   }
 
   return (
-    <Line data={data} options={options} width={600} height={400} redraw={true}/>
+    <Line data={data} options={options} />
   )
 }
 
