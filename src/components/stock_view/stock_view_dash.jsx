@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 
-// import { Line } from 'react-chartjs-2';
-
-// import axios from 'axios';
-// import _ from 'lodash';
-
 import StockChart from './stock_chart';
 import NewsFeed from '../news_feed/news_feed_dash';
-// import * as Mock from '../mock_values/mock_user_values';
-// import * as SVG from '../../svg_util';
 
 import './view.css';
 
@@ -38,7 +31,6 @@ class StockView extends Component {
     const { stock, onView } = this.state;
     console.log(stock);
     if (onView) {
-      const { date } = stock.chart;
       return (
         <div className="content">
 
