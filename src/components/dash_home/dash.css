@@ -1,18 +1,64 @@
-.mock__dash {
+.dash {
   grid-column: span 11;
   grid-row: span 8;
   display: grid;
   grid-template-rows: 1fr 6fr 1fr;
 }
 
-.mock__vitals {
+.dash__carousel-wrap {
   display: grid;
-  grid-template-columns: repeat(2, 50%);
+  /* grid-template-columns: 50px auto 50px; */
+  grid-template-columns: 100%;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.dash__carousel {
+  display: grid;
+  grid-gap: 8px;
+  overflow-x: scroll;
+  /* grid-template-columns: 50px repeat(5, 1fr) 50px; */
+  /* grid-template-columns: repeat(5, 20%); */
+  grid-template-columns: repeat(40, 1fr);
+  grid-template-rows: 600px;
+}
+
+[class^="dash__arrow-"] {
+  position: sticky;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-widget {
+  display: grid;
+  grid-column: span 8;
+  grid-template-rows: 10% 26% 35% 28%;
+}
+
+.dash-widget__mini-chart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-widget__key-stats {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-auto-rows: auto;
+}
+
+
+.dash-widget__vitals {
+  display: grid;
+  /* grid-template-columns: repeat(2, 50%); */
+  grid-template-columns: 30% 70%;
   grid-template-rows: repeat(2, 50%);
 }
 
-.mock__widget-title {
-  font-size: 1.2em;
+.dash-widget__title {
+  /* font-size: 1.2em; */
   font-weight: 700;
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
@@ -20,22 +66,22 @@
   grid-template-columns: auto auto;
 }
 
-.mock__primary-exchange {
+.dash-widget__primary-exchange {
   font-size: 12px;
   grid-column: 2 / span 1;
   grid-row: 2 / span 1;
 }
 
-.mock__widget-price {
-  font-size: 1.5em;
+.dash-widget__price {
+  /* font-size: 1.5em; */
   font-weight: 700;
   text-align: left;
   grid-column: span 1;
   grid-row: span 1;
 }
 
-.mock__widget-change {
-  font-size: 1em;
+.dash-widget__change {
+  /* font-size: 1em; */
   font-weight: 700;
   text-align: left;
   grid-column: span 1;
@@ -44,78 +90,22 @@
   grid-template-columns: auto auto 10%
 }
 
-
-.mock__carousel {
-  display: grid;
-  grid-template-columns: 50px repeat(5, 1fr) 50px;
+.dash-widget__feed {
+  overflow-y: scroll;
 }
 
-.mock__widget {
-  display: grid;
-  grid-template-rows: 10% 26% 35% 28%;
-}
-
-.mock__mini-chart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mock__key-stats {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-auto-rows: auto;
-}
-
-.mock__mini-feed-item {
+.mini-feed-item {
   font-size: 12px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  text-align: left;
+  margin-left: 5px;
+  padding: 5px;
 }
 
-[class^="mock__arrow-"] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.mini-feed-item__headline {
 }
 
-/*
-avgTotalVolume: 5775879
-calculationPrice: "close"
-change: 0.01
-changePercent: 0.00013
-* close: 74.76
-closeTime: 1528401692712
-companyName: "Nike Inc."
-delayedPrice: 74.76
-delayedPriceTime: 1528401692712
-extendedChange: 0.22
-extendedChangePercent: 0.00294
-extendedPrice: 74.98
-extendedPriceTime: 1528404322533
-* high: 75.91
-iexAskPrice: 0
-iexAskSize: 0
-iexBidPrice: 0
-iexBidSize: 0
-iexLastUpdated: 1528401599595
-iexMarketPercent: 0.04277
-iexRealtimePrice: 74.765
-iexRealtimeSize: 200
-iexVolume: 282251
-* latestPrice: 74.76
-latestSource: "Close"
-latestTime: "June 7, 2018"
-* latestUpdate: 1528401692712
-* latestVolume: 6599275
-* low: 74.65
-* marketCap: 120495132146
-* open: 74.99
-openTime: 1528378200556
-* peRatio: 31.81
-* previousClose: 74.75
-* primaryExchange: "New York Stock Exchange"
-* sector: "Consumer Cyclical"
-* symbol: "NKE"
-* week52High: 74.94
-* week52Low: 50.35
-ytdChange: 0.18434094321807543
-*/
+.mini-feed-item__source {
+  text-indent: 10px;
+}

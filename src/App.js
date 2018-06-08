@@ -9,7 +9,7 @@ import _ from 'lodash';
 
 import WatchList from './components/watch_list/watch_list_dash';
 import StockView from './components/stock_view/stock_view_dash';
-import {Dashboard} from './components/dash_home/dash';
+import Dashboard from './components/dash_home/dash';
 
 import './App.css';
 

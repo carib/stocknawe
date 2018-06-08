@@ -4,77 +4,90 @@ import _ from 'lodash';
 
 import MiniChart from './mini_chart';
 
-export const DashWidget = (props) => {
-  if (props.watchList['NKE']) {
-    let { quote } = props.watchList['NKE']
+export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) => {
+  // debugger
+  if (item) {
+    let news = item[1].news.slice(0, 2);
+    let { symbol, companyName, low, high,
+          change, changePercent, latestVolume, peRatio,
+          open, previousClose, primaryExchange, marketCap,
+          latestPrice, week52Low, week52High } = item[1].quote;
+    let clippedName = /^(.*\sInc\.)/.test(companyName) ? companyName.match(/^(.*\sInc\.)/)[0] : companyName;
     return (
-      <div className="mock__widget">
-        <div className="mock__vitals">
-          <div className="mock__widget-title">
-            <div className="mock__symbol">{quote.symbol}</div>
-            <div className="mock__companyName">{quote.companyName}</div>
+      <div className="dash-widget">
+        <div className="dash-widget__vitals">
+          <div className="dash-widget__title">
+            <div className="dash-widget__symbol">{symbol}</div>
+            <div className="dash-widget__companyName">
+              {clippedName}
+            </div>
           </div>
-          <div className="mock__primary-exchange">{quote.primaryExchange}</div>
-          <div className="mock__widget-price">{`$${quote.latestPrice}`}</div>
-          <div className="mock__widget-change">
-            <div className="mock__change">{quote.change}</div>
-            <div className="mock__changePercent">{`${_.round(quote.changePercent * 100, 2)}%`}</div>
-            <div className="mock__indicator">^</div>
+          <div className="dash-widget__primary-exchange">{primaryExchange}</div>
+          <div className="dash-widget__price">{`$${latestPrice}`}</div>
+          <div className="dash-widget__change">
+            <div className="dash-widget__change">{change}</div>
+            <div className="dash-widget__changePercent">
+              {`${_.round(changePercent * 100, 2)}%`}
+            </div>
+            <div className="dash-widget__indicator">^</div>
           </div>
         </div>
-        <div className="mock__mini-chart"><MiniChart stock={props.watchList['NKE']}/></div>
-        <div className="mock__key-stats">
-          <div className="mock__peRatio">
+        <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
+        <div className="dash-widget__key-stats">
+          <div className="dash-widget__peRatio">
                   peRatio
                   <br/>
-            {quote.peRatio}
+            {peRatio}
           </div>
-          <div className="mock__open">
+          <div className="dash-widget__open">
                   open
                   <br/>
-            {quote.open}
+            {open}
           </div>
-          <div className="mock__previous-close">
+          <div className="dash-widget__previous-close">
                   previousClose
                   <br/>
-            {quote.previousClose}
+            {previousClose}
           </div>
-          <div className="mock__volume">
+          <div className="dash-widget__volume">
                   latestVolume
                   <br/>
-            {quote.latestVolume}
+            {latestVolume}
           </div>
-          <div className="mock__market-cap">
+          <div className="dash-widget__market-cap">
                   marketCap
                   <br/>
-            {`${_.round(quote.marketCap / 1000000000)}B`}
+            {`${_.round(marketCap / 1000000000)}B`}
           </div>
-          <div className="mock__day-range">
+          <div className="dash-widget__day-range">
                   day range
                   <br/>
-            {`${quote.low}->${quote.high}`}
+            {`${low}->${high}`}
           </div>
-          <div className="mock__year-range">
+          <div className="dash-widget__year-range">
                   52-week range
                   <br/>
-            {`${quote.week52Low}->${quote.week52High}`}
+            {`${week52Low}->${week52High}`}
           </div>
         </div>
-        <div className="mock__headlines">
-          <div className="mock__mini-feed-item">
-            <div className="mock__headline">{props.watchList['NKE'].news[0].headline}</div>
-            <div className="mock__source">{props.watchList['NKE'].news[0].source}</div>
-            <div className="mock__summary">{`${props.watchList['NKE'].news[0].summary.slice(0, 140)}...`}</div>
-          </div>
-          <div className="mock__mini-feed-item">
-            <div className="mock__headline">{props.watchList['NKE'].news[1].headline}</div>
-            <div className="mock__source">{props.watchList['NKE'].news[1].source}</div>
-            <div className="mock__summary">{`${props.watchList['NKE'].news[1].summary.slice(0, 140)}...`}</div>
-          </div>
+        <div className="dash-widget__feed">
+          {
+            news.map((story, index)=> <MiniFeed story={story} key={index} />)
+          }
         </div>
+
       </div>
     )
   } else {
     return <div className="loading">Loading...</div>
   }
+}
+
+const MiniFeed = ({ story }) => {
+  return (
+    <div className="mini-feed-item">
+      <div className="mini-feed-item__headline">{`${story.headline.slice(0, 40)}...`}</div>
+      <div className="mini-feed-item__source">{`- ${story.source}`}</div>
+    </div>
+  )
 }
