@@ -2,7 +2,6 @@ import React from 'react';
 
 import { DashCarousel } from './dash_carousel';
 
-import * as SVG from '../../svg_util';
 import './dash.css'
 
 class Dashboard extends React.Component {

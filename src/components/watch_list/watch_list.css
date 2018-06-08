@@ -23,14 +23,16 @@
   display: grid;
   grid-template-columns: 100%;
   grid-auto-rows: 12%;
-  grid-gap: 3px;
+  grid-gap: 2px;
 }
 
-
-.list-item {
+.list-item__link {
   border-bottom: none;
   border-radius: 5px;
   line-height: 1.6;
+}
+
+.list-item {
   display: grid;
   grid-template: 1fr / 1fr 2fr 1fr;
   padding: 5px;
@@ -49,7 +51,7 @@
   transform: scale(1.005);
   box-shadow: 0px 1px 20px 0px var(--float-shade);
   border-radius: 20px;
-  transition: all 250ms ease;
+  transition: border-radius, transform, box-shadow 1000ms ease;
 }
 
 .list-item:first-child {

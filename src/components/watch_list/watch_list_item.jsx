@@ -39,7 +39,7 @@ export const WatchListItem = (props) => {
   }
 
   return (
-    <Link to={`/stocks/${symbol}`} onClick={handleItemClick}>
+    <Link to={`/stocks/${symbol}`} onClick={handleItemClick} className='list-item__link'>
       <div className={isLast ? 'list-item last' : "list-item"} name={symbol}>
         <div className="list-item__title">
           {symbol}

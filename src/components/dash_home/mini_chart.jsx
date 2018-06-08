@@ -21,6 +21,7 @@ const MiniChart = ({ stock }) => {
         pointRadius: 3,
         borderWidth: 1,
         showLine: true,
+        cubicInterpolationMode: 'monotone'
       },
     ]
   }
@@ -109,7 +110,7 @@ function parseStockData({ chart, quote }) {
 
   dates = dates.slice(0, new Date().getDay() - 1).map(date => {
     date = date.slice(5).split('-')
-    date = date.map(num => parseInt(num).toString())
+    date = date.map(num => parseInt(num, 10).toString())
     return date.join('/')
   });
   _.reverse(dates)

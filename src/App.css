@@ -62,6 +62,15 @@ a {
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+  -webkit-border-radius: 6px;
+}
+
 .App {
   text-align: center;
   display: grid;
@@ -78,6 +87,7 @@ a {
 }
 
 .home-link {
+  position: absolute;
   height: 50px;
   width: 50px;
   border-radius: 50px;

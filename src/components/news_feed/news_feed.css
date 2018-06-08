@@ -28,7 +28,7 @@
   transform: scale(1.005);
   box-shadow: 0px 1px 20px 0px var(--float-shade);
   border-radius: 50px;
-  transition: all 250ms ease;
+  transition: border-radius, transform, box-shadow 250ms ease;
 }
 
 .feed-item__head {

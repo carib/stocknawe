@@ -2,8 +2,6 @@ import React from 'react';
 
 import { DashWidget } from './dash_widget';
 
-import * as SVG from '../../svg_util';
-
 export const DashCarousel = (props) => {
   const { items, rotateView, viewIndex,  } = props;
 
