@@ -45,7 +45,9 @@ export const WatchListItem = (props) => {
           {symbol}
         </div>
         <div className="list-item__price">{`$${quote.latestPrice}`}</div>
-        <div className={`list-item__detail-${viewColor}`} onClick={handleClick.bind(this)}>{detailViews[viewIndex]}</div>
+        <div className={`list-item__detail ${viewColor}`} onClick={handleClick.bind(this)}>
+          {detailViews[viewIndex]}
+        </div>
       </div>
     </Link>
   )

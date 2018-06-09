@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Redirect } from 'react-router-dom';
+
 import StockChart from './stock_chart';
 import NewsFeed from '../news_feed/news_feed_dash';
 
@@ -14,22 +16,24 @@ class StockView extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState((state, nextProps) => {
-      return {
-        ...state,
-        stock: nextProps.selectedStock,
-        onView: true,
-        viewOptions: {
+  componentWillMount() {
+    this.setState({
+      stock: this.props.selectedStock,
+      onView: true,
+    })
+  }
 
-        }
-      }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      stock: nextProps.selectedStock,
+      onView: true,
+      viewOptions: {}
     })
   }
 
   render() {
     const { stock, onView } = this.state;
-    if (onView) {
+    if (stock && onView) {
       return (
         <div className="content">
           <div className="stock-view__title">
@@ -55,13 +59,7 @@ class StockView extends Component {
         </div>
       )
     } else {
-      return (
-        <div className="stock-view">
-          <div className=""><h1>Welcome</h1></div>
-          <div className="mock__chart"></div>
-          <div className="mock__feed"></div>
-        </div>
-      )
+      return <Redirect to='/' />
     }
   }
 }

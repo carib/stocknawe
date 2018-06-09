@@ -3,10 +3,15 @@
   grid-column: span 11;
   grid-row: span 8;
   display: grid;
-  grid-template-rows: 1fr 6fr 1fr;
+  grid-template-rows: repeat(8, 1fr);
+}
+
+.dash__greeting {
+  grid-row: 1 / span 1;
 }
 
 .dash__carousel-wrap {
+  grid-row: 2 / span 6;
   display: grid;
   grid-template-columns: 100%;
   padding-left: 10px;
@@ -14,12 +19,17 @@
   grid-template-rows: 600px;
 }
 
+
 .dash__carousel {
   display: grid;
   grid-gap: 5px;
   overflow-x: scroll;
   grid-template-columns: repeat(40, 1fr);
   grid-template-rows: 584px;
+}
+
+.dash__ticker {
+  grid-row: 8 / span 1;
 }
 
 [class^="dash__arrow-"] {
@@ -71,10 +81,9 @@
   grid-row: 1 / span 3;
 }
 
-.dash-widget__indicator {
+[class^='dash-widget__indicator'] {
   grid-column: 1 / span 12;
-  grid-row: 1 / span 1;
-  border-top: 20px solid tomato;
+  grid-row: 6 / span 1;
 }
 
 .dash-widget__price {
@@ -107,7 +116,7 @@
 
 .dash-widget__change-wrap {
   grid-column: 7 / span 6;
-  grid-row: 6 / span 1;
+  grid-row: 5 / span 1;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 100%;

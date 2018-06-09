@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
-
 import { WatchListings } from './watch_listings';
 import { SearchBar } from '../search/search_bar';
 
-import * as Mock from '../mock_values/mock_user_values';
 import * as SVG from '../../svg_util';
 
 import './watch_list.css';
@@ -29,80 +26,27 @@ class WatchList extends Component {
     this.handleSelection = this.handleSelection.bind(this);
   }
 
-  componentWillMount() {
-    this.initList()
-  }
-
   componentWillReceiveProps(nextProps) {
     console.log(nextProps);
     const { watchedItems } = nextProps;
-    this.setState((state, props) => {
-      return {
-        ...state,
-        watchedItems,
-        initialized: true
-      }
-    })
-  }
-
-  initList() {
-    let watchedItems = Mock.watchList; // NB: Would be User's saved list.
-    this.fetchStocksData(watchedItems)
-      .then(res => {
-        let watchedItems = res.data;
-        // this.setState((state, props) => {
-        //   return {
-        //     ...state,
-        //     watchedItems,
-        //     initialized: true,
-        //   }
-        // })
-        this.props.updateWatchList(watchedItems);
+    if (this.state.watchedItems !== watchedItems) {
+      this.setState((state, props) => {
+        return {
+          ...state,
+          watchedItems,
+          initialized: true
+        }
       })
-      .catch(error => console.log(error))
-    this.fetchAvailable()
-      .then(res => {
-        let availableStocks = res.data;
-        this.setState((state, props) => {
-          return {
-            ...state,
-            availableStocks,
-          }
-        });
-
-      })
-      .catch(error => console.log(error))
-  }
-
-  async fetchAvailable() {
-    const stocksURL = `https://api.iextrading.com/1.0/ref-data/symbols`;
-    const res = await axios.get(stocksURL);
-    return await res;
-  }
-
-  async fetchStocksData(symbols) {
-    this.setState({
-      searchQuery: '',
-      queryData: {},
-    });
-    symbols = symbols.length > 1 ? symbols.join(',') : symbols[0];
-    const url = `https://api.iextrading.com/1.0/stock/market/batch?` +
-                `symbols=${symbols}` +
-                `&types=quote,news,chart` +
-                `&range=1m` +
-                `&last=5`;
-    const res = await axios.get(url);
-    return await res;
+    }
   }
 
   handleClick(e) {
     if (e) {
       e.preventDefault();
     }
-
     if (this.state.searchQuery) {
       const symb = [this.state.searchQuery];
-      this.fetchStocksData(symb)
+      this.props.fetchStocksData(symb)
     }
   }
 
