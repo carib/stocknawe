@@ -7,7 +7,6 @@ import MiniChart from './mini_chart';
 export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) => {
   // debugger
   if (item) {
-    let news = item[1].news.slice(0, 2);
     let { symbol, companyName, low, high,
           change, changePercent, latestVolume, peRatio,
           open, previousClose, primaryExchange, marketCap,
@@ -18,9 +17,7 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) =>
         <div className="dash-widget__vitals">
           <div className="dash-widget__title">
             <div className="dash-widget__symbol">{symbol}</div>
-            <div className="dash-widget__company-name">
-              {clippedName}
-            </div>
+            <div className="dash-widget__company-name">{clippedName}</div>
           </div>
           <div className="dash-widget__price">{`$${latestPrice}`}</div>
           <div className="dash-widget__change-wrap">
@@ -28,8 +25,8 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) =>
             <div className="dash-widget__change-percent">
               {`${_.round(changePercent * 100, 2)}%`}
             </div>
-            <div className="dash-widget__indicator">^</div>
           </div>
+          <div className="dash-widget__indicator"></div>
         </div>
         <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
         <div className="dash-widget__key-stats">
@@ -65,11 +62,6 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) =>
             <div className="key-stat__datum">{`${week52Low}->${week52High}`}</div>
           </div>
         </div>
-        <div className="dash-widget__feed">
-          {
-            news.map((story, index)=> <MiniFeed story={story} key={index} />)
-          }
-        </div>
 
       </div>
     )
@@ -77,17 +69,22 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) =>
     return <div className="loading">Loading...</div>
   }
 }
-
-const MiniFeed = ({ story }) => {
-  return (
-    <div className="mini-feed-item">
-      <div className="mini-feed-item__headline">{`${story.headline.slice(0, 40)}...`}</div>
-      <div className="mini-feed-item__source">{`- ${story.source}`}</div>
-    </div>
-  )
-}
+// let news = item[1].news.slice(0, 2);
+// const MiniFeed = ({ story }) => {
+//   return (
+//     <div className="mini-feed-item">
+//       <div className="mini-feed-item__headline">{`${story.headline.slice(0, 40)}...`}</div>
+//       <div className="mini-feed-item__source">{`- ${story.source}`}</div>
+//     </div>
+//   )
+// }
 // <div className="dash-widget__pe-ratio">
 //   <div className="key-stats__label">peRatio</div>
 //         <br/>
 //   <div className="key-stats__datum">{peRatio}</div>
+// </div>
+// <div className="dash-widget__feed">
+//   {
+//     news.map((story, index)=> <MiniFeed story={story} key={index} />)
+//   }
 // </div>

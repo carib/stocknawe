@@ -6,7 +6,8 @@ import _ from 'lodash';
 const MiniChart = ({ stock }) => {
   const { quote } = stock;
   const parsedData = parseStockData(stock)
-  let color = quote.change < 0 ? '#F03A3A' : '#00FF7F';
+  let color = 'black';
+  // let color = quote.change < 0 ? '#F03A3A' : '#00FF7F';
 
   const data = {
     labels: parsedData.dates,
@@ -85,7 +86,6 @@ const MiniChart = ({ stock }) => {
               display: true,
             },
             fontSize: 9,
-            stepSize: 1
           }
         }
       ]
