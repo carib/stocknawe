@@ -3,7 +3,7 @@ import React from 'react';
 import { WatchListItem } from './watch_list_item';
 
 export const WatchListings = (props) => {
-  const { items, rotateView, viewIndex, setSelected } = props;
+  const { items, rotateView, viewIndex, setSelected, style } = props;
 
   function handleClick(e) {
     if (e) e.preventDefault()
@@ -11,7 +11,7 @@ export const WatchListings = (props) => {
   }
 
   return (
-    <div className="list">
+    <div className="list" style={style}>
       {
         items.map((item, index) => <WatchListItem key={index}
                                       setSelected={setSelected}

@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
+  Switch
 } from 'react-router-dom';
 
 import _ from 'lodash';
@@ -93,12 +94,14 @@ class App extends React.Component {
               setSelected={this.setSelected}
               updateWatchList={this.updateWatchList}/>
           </div>
-          <Route path="/stocks/:symbol"
-            render={(props) => <StockView {...props} selectedStock={this.state.selectedStock}/>} />
-          <Route exact path='/'
-            render={(props) => <Dashboard {...props}
-            watchList={watchList} fetchAvailable={this.fetchAvailable}
-          fetchStocksData={this.fetchStocksData}/> }/>
+          <Switch>
+            <Route exact path='/'
+              render={(props) => <Dashboard {...props}
+              watchList={watchList} fetchAvailable={this.fetchAvailable}
+              fetchStocksData={this.fetchStocksData}/> }/>
+            <Route path="/stocks/:symbol"
+              render={(props) => <StockView {...props} selectedStock={this.state.selectedStock}/>} />
+          </Switch>
         </main>
       </Router>
     );

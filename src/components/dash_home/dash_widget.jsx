@@ -13,6 +13,7 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) =>
     let indicatorColor = quote.change < 0 ? 'negative' : 'positive';
     return (
       <div className="dash-widget">
+
         <div className="dash-widget__vitals">
           <div className="dash-widget__title">
             <div className="dash-widget__symbol">{quote.symbol}</div>
@@ -27,7 +28,7 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) =>
           </div>
           <div className={`dash-widget__indicator ${indicatorColor}`}></div>
         </div>
-        <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
+
         <div className="dash-widget__key-stats">
 
           <div className="key-stat__open">
@@ -62,28 +63,10 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) =>
           </div>
         </div>
 
+        <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
       </div>
     )
   } else {
     return <div className="loading">Loading...</div>
   }
 }
-// let news = item[1].news.slice(0, 2);
-// const MiniFeed = ({ story }) => {
-//   return (
-//     <div className="mini-feed-item">
-//       <div className="mini-feed-item__headline">{`${story.headline.slice(0, 40)}...`}</div>
-//       <div className="mini-feed-item__source">{`- ${story.source}`}</div>
-//     </div>
-//   )
-// }
-// <div className="dash-widget__pe-ratio">
-//   <div className="key-stats__label">peRatio</div>
-//         <br/>
-//   <div className="key-stats__datum">{peRatio}</div>
-// </div>
-// <div className="dash-widget__feed">
-//   {
-//     news.map((story, index)=> <MiniFeed story={story} key={index} />)
-//   }
-// </div>

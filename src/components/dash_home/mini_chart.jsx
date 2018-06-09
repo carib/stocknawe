@@ -57,15 +57,18 @@ const MiniChart = ({ stock }) => {
     scales: {
       xAxes: [
         {
+          // type: 'time',
+          display: true,
           ticks: {
-            fontSize: 9
+            fontSize: 9,
           },
-          display: false,
+
           scaleLabel: {
             fontFamily: 'Lato'
           },
           gridLines: {
-            display: false
+            display: false,
+            tickMarkLength: 7
           },
         },
       ],

@@ -53,9 +53,7 @@ class Dashboard extends React.Component {
     return (
       <div className="dash">
         <div className="dash__greeting">DASHBOARD GREETING</div>
-        <div className="dash__carousel-wrap">
-          <DashCarousel rotateView={rotateView} viewIndex={viewIndex} items={widgets} />
-        </div>
+        <DashCarousel rotateView={rotateView} viewIndex={viewIndex} items={widgets} />
         <div className="dash__ticker">TICKER</div>
       </div>
     )
@@ -63,5 +61,3 @@ class Dashboard extends React.Component {
 }
 
 export default Dashboard;
-// <div className="dash__arrow-left"><SVG.leftArrow/></div>
-// <div className="dash__arrow-right"><SVG.rightArrow/></div>

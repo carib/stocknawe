@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import _ from 'lodash';
+
 import { WatchListings } from './watch_listings';
 import { SearchBar } from '../search/search_bar';
 
@@ -86,6 +88,13 @@ class WatchList extends Component {
     } = this.state;
 
     if (initialized) {
+      let listGridRow = _.size(watchedItems) + 2;
+      const listStyle = {
+        gridRow: `3 / span ${listGridRow}`
+      }
+      const controlsStyle = {
+        gridRow: `${listGridRow + 3} / span ${28 - listGridRow}`
+      }
       return (
         <div className={listOpen ? 'watch-list' : 'watch-list closed'}>
           <div className="watch-list__toggle" onClick={this.toggleList}>{'<'}</div>
@@ -98,18 +107,19 @@ class WatchList extends Component {
           </div>
 
           <WatchListings
+            style={listStyle}
             items={Object.entries(watchedItems)}
             rotateView={this.rotateView}
             viewIndex={viewIndex}
             setSelected={this.handleSelection}
           />
 
-          <div className="watch-list__controls">
+        <div className="watch-list__controls" style={controlsStyle}>
             <div className="button-wrap">
-              <button className="button__watch-list" onClick={this.handleClick}>
+              <button className="button__watch-list more" onClick={this.handleClick}>
                 <SVG.moreButton />
               </button>
-              <button className="button__watch-list" onClick={this.handleClick}>
+              <button className="button__watch-list less" onClick={this.handleClick}>
                 <SVG.lessButton />
               </button>
             </div>
