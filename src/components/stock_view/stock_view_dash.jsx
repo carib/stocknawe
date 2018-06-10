@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import _ from 'lodash';
+// import _ from 'lodash';
 
 import StockChart from './stock_chart';
 import NewsFeed from '../news_feed/news_feed_dash';
-import { DashWidget } from '../dash_home/dash_widget';
+import { DashWidget, WidgetKeyStats } from '../dash_home/dash_widget';
 
 import './view.css';
 
@@ -33,9 +33,12 @@ class StockView extends Component {
 
   componentDidMount() {
     const widget = document.getElementsByClassName('dash-widget')[0];
-    if (widget) {
+    const stats = document.getElementsByClassName('key-stats')[0];
+    if (widget && stats) {
       widget.classList.add('single-stock');
+      stats.classList.add('single-stock');
       Array.from(widget.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
+      Array.from(stats.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
     }
   }
 
@@ -56,18 +59,16 @@ class StockView extends Component {
       return (
         <div className="stock-view">
           <div className="stock-view__title">
-            <DashWidget parentComponent={'stock-view'} item={[stock.quote.symbol, stock]}                     fetchStocksData={this.props.fetchStocksData}
-              parent={'stock-view__title'}/>
+            <DashWidget item={[stock.quote.symbol, stock]}
+              fetchStocksData={this.props.fetchStocksData}/>
           </div>
-          <div className="chart">
-            <div className="chart-tab"></div>
+          <div className="stock-view__chart">
             <div className="chart-view">
               <StockChart stock={stock} />
             </div>
-
-            <ChartControl handleClick={this.handleClick} />
+            <WidgetKeyStats quote={stock.quote}/>
           </div>
-          <div className="feed-dash">
+          <div className="stock-view__feed-dash">
             <NewsFeed stock={stock} />
           </div>
         </div>
@@ -77,14 +78,14 @@ class StockView extends Component {
     }
   }
 }
-
-const ChartControl = (props) => {
-  return (
-    <div className="mock__chart-controls">
-      <div className="mock__chart-controls__options">CONTROLS</div>
-      <div className="mock__chart-controls__range-selector"></div>
-    </div>
-  )
-}
+// <ChartControl handleClick={this.handleClick} />
+// const ChartControl = (props) => {
+//   return (
+//     <div className="chart-controls">
+//       <div className="chart-controls__options">CONTROLS</div>
+//       <div className="chart-controls__range-selector"></div>
+//     </div>
+//   )
+// }
 
 export default StockView;

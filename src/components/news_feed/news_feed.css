@@ -2,8 +2,8 @@
   overflow-x: visible;
   overflow-y: scroll;
   padding-top: 5px;
+  width: 94%;
 }
-
 
 .feed-item {
   margin-left: 1%;

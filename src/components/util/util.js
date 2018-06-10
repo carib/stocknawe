@@ -11,15 +11,16 @@ export const parseStockData = (stock, dataSets) => {
     let latestPrice = _.round(quote.latestPrice, 2);
     let set = dataSets[i];
 
-    prices = prices.slice(0, new Date().getDay() - 1)
+    // prices = prices.slice(0, new Date().getDay() - 1)
+    prices = prices.slice(0, 6);
     prices = prices.map(date => _.round(date[set], 2));
-
     _.reverse(prices)
     prices.push(latestPrice);
     parsedDataSets.prices[set] = prices;
   }
 
-  dates = dates.slice(0, new Date().getDay() - 1).map(date => {
+  // dates = dates.slice(0, new Date().getDay() - 1).map(date => {
+  dates = dates.slice(0, 6).map(date => {
     date = date.slice(5).split('-')
     date = date.map(num => parseInt(num, 10).toString())
     return date.join('/')

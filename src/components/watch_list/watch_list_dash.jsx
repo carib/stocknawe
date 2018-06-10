@@ -31,7 +31,6 @@ class WatchList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     const { watchedItems } = nextProps;
     if (this.state.watchedItems !== watchedItems) {
       this.setState((state, props) => {

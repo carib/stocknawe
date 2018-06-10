@@ -11,23 +11,25 @@ const StockChart = (props) => {
     labels: parsedData.dates,
     datasets: [
       {
-        label: `High`,
-        data: parsedData.prices['high'],
-        fill: true,
-        borderColor: '#00FF7F',
-        pointBorderColor: '#00FF7F',
-        pointStyle: 'cross',
-        pointRadius: 5,
-        borderWidth: 1,
-        showLine: false,
-      },
-      {
         label: `Low`,
         data: parsedData.prices['low'],
         fill: true,
         borderColor: 'tomato',
         pointBorderColor: 'tomato',
-        pointStyle: 'cross',
+        backgroundColor: 'tomato',
+        pointStyle: 'rectRot',
+        pointRadius: 5,
+        borderWidth: 1,
+        showLine: false,
+      },
+      {
+        label: `High`,
+        data: parsedData.prices['high'],
+        fill: true,
+        borderColor: '#00FF7F',
+        pointBorderColor: '#00FF7F',
+        backgroundColor: '#00FF7F',
+        pointStyle: 'rectRot',
         pointRadius: 5,
         borderWidth: 1,
         showLine: false,
@@ -37,7 +39,7 @@ const StockChart = (props) => {
 
   const options = {
     responsive: true,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     layout: {
       padding: {
         left: 0,
@@ -55,9 +57,10 @@ const StockChart = (props) => {
     },
     legend: {
       display: true,
-      // position: 'bottom',
+      position: 'bottom',
       labels: {
-        usePointStyle: true
+        usePointStyle: true,
+        fontSize: 10
       }
     },
     hover: {
@@ -67,6 +70,9 @@ const StockChart = (props) => {
       xAxes: [
         {
           display: true,
+          gridLines: {
+            // color: 'black'
+          },
           scaleLabel: {
             show: true,
             labelString: 'Day'
@@ -75,10 +81,15 @@ const StockChart = (props) => {
       ],
       yAxes: [
         {
+          type: 'linear',
           display: true,
+          position: 'right',
+          gridLines: {
+            // color: 'black'
+          },
           scaleLabel: {
             show: true,
-            labelString: '$$$'
+            fontFamily: 'Lato'
           },
           ticks: {
             callback: function (value, index, values) {

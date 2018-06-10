@@ -1,21 +1,17 @@
-.content {
-  overflow: hidden;
-  display: grid;
-  grid-column: span 11;
-  grid-row: span 8;
-  grid-template-rows: 1fr 2fr 3fr;
-}
+/* ******************************************* VIEW MAIN */
 .stock-view {
   grid-row: span 8;
   grid-column: span 11;
   display: grid;
   overflow: hidden;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 12.5%);
+  grid-template-rows: repeat(20, 1fr);
 }
 
 .stock-view__title {
-  grid-row: 1 / span 1;
+  z-index: 4;
+  padding-left: 1%;
+  grid-row: 1 / span 4;
   grid-column: span 12;
   line-height: 4;
   text-align: center;
@@ -24,136 +20,196 @@
   grid-template: 1fr / 100%;
 }
 
-.chart {
-  grid-row: 2 / span 4;
+.stock-view__chart {
+  padding-left: 1%;
+  grid-row: 5 / span 7;
   display: grid;
   grid-template-columns: repeat(40, 1.98em);
   grid-template-rows: repeat(10, 1.87em);
-  box-shadow: 0px 2px 20px 0px var(--rest-shade);
+  box-shadow: 0px 30px 40px -15px var(--float-shade);
 }
 
-.feed-dash {
-  grid-row: 6 / span 3;
+.stock-view__feed-dash {
+  grid-row: 12 / span 9;
   overflow-x: visible;
   overflow: scroll;
 }
 
-.chart-wrap {
-  grid-column: 1 / span 23;
-  grid-row: 1 / span 10;
-  display: grid;
-  grid-template-columns: 100px auto 200px;
-}
-
-.chart-tab {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.chart-view {
-  grid-column: 2 / span 21;
-  grid-row: 1 / span 10;
-  height: 95%;
-  width: 95%;
-}
-
-.mock__chart-controls {
-  grid-column: span 15;
-  grid-row: span 10;
-  display: grid;
-}
-
-
+/* ******************************************* TITLE MAIN */
 .dash-widget.single-stock {
   grid-row: 1 / span 2;
   grid-column: 1;
-  grid-template-rows: 100%;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  box-shadow: none;
+  border-radius: 0;
 }
 
+.dash-widget.single-stock:hover {
+  border-radius: 0;
+  box-shadow: none;
+  z-index: 4;
+  transform: none;
+  box-shadow: none;
+  border-radius: none;
+  transition: none;
+}
+
+/* ******************************************* CHART MAIN */
+.chart-view {
+  grid-column: 22 / span 17;
+  grid-row: 1 / span 11;
+  height: 100%;
+  width: 95%;
+}
+
+/* ******************************************* STOCK WIDGET MAIN */
+
 .dash-widget__vitals.single-stock {
+  padding: 5px 0px 1px 10px;
   grid-column: 1 / span 5;
-  grid-row: 1;
+  grid-row: 1 / span 10;
   text-indent: 0%;
 }
 
-.dash-widget__key-stats.single-stock {
-  grid-column: 6 / span 6;
-  grid-row: 1;
+.key-stats.single-stock {
+  margin-left: 6px;
+  grid-column: 1 / span 20;
+  grid-row: 1 / span 10;
+  display: grid;
+  grid-column-gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 
 .dash-widget__mini-chart.single-stock {
   display: none;
 }
 
-.dash-widget-selected.single-stock {}
-
-.dash-widget:hover.single-stock {}
-
-
-
+/* ******************************************* STOCK VITALS */
 .dash-widget__title.single-stock {
-  grid-row: 1 / span 5;
-  grid-column: 1 / span 3;
+  grid-row: 1 / span 3;
+  grid-column: 1 / span 5;
   display: grid;
-  grid-template-rows: 25% 75%;
+  grid-template-rows: 75% 25%;
   grid-template-columns: 100%;
   text-align: left;
   padding: 0;
   margin: 0;
   line-height: 1;
-  text-indent: 0%;
 }
 
+.dash-widget__price.single-stock {
+  grid-row: 4 / span 6;
+  grid-column: 1 / span 8;
+  line-height: 1.1;
+  margin-left: -3px;
+  text-align: left;
+  font-size: 5.3em;
+}
+
+.dash-widget__change-wrap.single-stock {
+  grid-row: 1 / span 2;
+  grid-column: 11 / span 2;
+  line-height: 1.8;
+  font-size: 1.4em;
+  grid-template-columns: 100%;
+  grid-template-rows: 50% 50%;
+  text-align: right;
+  margin-right: 3px;
+}
+
+.dash-widget__indicator.single-stock {
+  grid-row: 8;
+  border-radius: 0;
+}
+
+/* ******************************************* VITALS TITLE */
 .dash-widget__symbol.single-stock {
   display: block;
-  font-size: 3.5em;
-  grid-row: 2 / span 2;
+  font-size: 3em;
+  grid-row: 1 / span 2;
   grid-column: 1;
-  line-height: 0.95;
+  line-height: 1.1;
 }
 
 .dash-widget__company-name.single-stock {
   display: block;
-  font-size: 1.5em;
-  grid-row: 1;
+  font-size: 1.1em;
+  grid-row: 2;
   grid-column: 1;
-  text-indent: 3px;
+  line-height: 0.8;
+  text-indent: 2px;
 }
 
-.dash-widget__price.single-stock {
-  grid-row: 4 / span 5;
-  grid-column: 4 / span 8;
+/* ******************************************* VITALS CHANGE */
+.dash-widget__change.single-stock {
+  grid-row: 2;
+}
+
+.dash-widget__change-percent.single-stock {
+  grid-row: 1;
+}
+
+/* ******************************************* VITALS INDICATOR */
+.dash-widget.single-stock:hover .dash-widget__indicator.single-stock {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: none;
+  transition: none;
+}
+
+/* ******************************************* VITALS PRICE */
+.dollar-sign.single-stock {
+  font-size: 0.9em;
+}
+
+/* ******************************************* KEY STATS */
+[class^='key-stat__'] {
+  padding-left: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.stat-label {
+  text-indent: 0.25em;
   line-height: 1;
+  padding-bottom: 0.2em;
   text-align: left;
-  font-size: 4.5em;
+  box-shadow: inset 2px -2px 0px -1px black;
+  width: 97%;
+  font-weight: 400;
+  font-size: 1.1em;
 }
 
-.dash-widget__change-wrap.single-stock {
-  grid-row: 7 / span 1;
-  grid-column: 1 / span 3;
-  line-height: 1;
+.stat-datum {
+  font-size: 1.2em;
+  text-align: right;
+  padding-right: 0.25em;
+  width: 100%;
+  line-height: 1.5;
+  box-sizing: border-box;
 }
 
-.dash-widget__indicator.single-stock {
-  grid-row: 7 / span 2;
-  grid-column: 1 / span 3;
-  display: block;
-  margin-bottom: 5px;
+.stat-datum-range {
+  font-size: 1.17em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  line-height: 1.6;
+}
+
+.stat-datum-low {
   margin-left: 5px;
+  box-sizing: border-box;
+  box-shadow: inset 0px -2px 0px -1px var(--stock-neg);
 }
 
-
-
-[class^='key-stat__'].single-stock {}
-
-.key-stat__label.single-stock {}
-
-.key-stat__datum.single-stock {}
-
-
-.dash-widget__change.single-stock {}
-
-.dash-widget__change-percent.single-stock {}
-
-.dash-widget__primary-exchange.single-stock {}
+.stat-datum-high {
+  margin-right: 5px;
+  text-align: right;
+  box-sizing: border-box;
+  box-shadow: inset 0px -2px 0px -1px var(--stock-pos);
+}
