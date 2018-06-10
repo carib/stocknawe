@@ -5,6 +5,7 @@ import {
   Switch
 } from 'react-router-dom';
 
+
 import _ from 'lodash';
 
 import * as Mock from './components/mock_values/mock_user_values';
@@ -20,7 +21,8 @@ class App extends React.Component {
     this.state = {
       selectedStock: null,
       watchList: {},
-      availableStocks: {},
+      availableStocks: [],
+      searchResults: {}
     }
 
     this.setSelected = this.setSelected.bind(this);
@@ -45,7 +47,10 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  fetchStocksData(symbols) {
+  fetchStocksData(symbols, isSearch = false) {
+    this.setState({
+      searchResults: {}
+    })
     symbols = symbols.length > 1 ? symbols.join(',') : symbols[0];
     const url = `https://api.iextrading.com/1.0/stock/market/batch?` +
                 `symbols=${symbols}` +
@@ -55,7 +60,11 @@ class App extends React.Component {
     fetch(url)
       .then(response => response.json())
       .then(watchList => {
-        this.setState({ watchList })
+        if (isSearch) {
+          this.setState({ searchResults: watchList })
+        } else {
+          this.setState({ watchList })
+        }
       })
       .catch(error => console.log(error))
   }
@@ -81,13 +90,17 @@ class App extends React.Component {
   }
 
   render() {
-    const { watchList } = this.state;
+    const { watchList, availableStocks, searchResults } = this.state;
     return (
       <Router>
         <main className="App">
           <Route path='/'
             render={(props) => (
-              <WatchList watchedItems={watchList}
+              <WatchList
+                fetchStocksData={this.fetchStocksData}
+                availableStocks={availableStocks}
+                watchedItems={watchList}
+                searchResults={searchResults}
                 setSelected={this.setSelected}
                 updateWatchList={this.updateWatchList}/>
             )}/>
@@ -97,6 +110,7 @@ class App extends React.Component {
                   <Dashboard {...props}
                     watchList={watchList}
                     fetchAvailable={this.fetchAvailable}
+                    setSelected={this.setSelected}
                     fetchStocksData={this.fetchStocksData}/>
                 )}/>
               <Route path="/stocks/:symbol"

@@ -1,5 +1,7 @@
 import React from 'react';
-    
+
+import _ from 'lodash';
+
 import { DashCarousel } from './dash_carousel';
 
 import './dash.css'
@@ -48,13 +50,28 @@ class Dashboard extends React.Component {
     });
   }
 
+  getGreeting() {
+    let hour = new Date().getHours();
+    let period;
+    if (hour < 12) {
+      period = 'morning'
+    } else if (_.inRange(hour, 12, 5)) {
+      period = 'afternoon'
+    } else if (_.inRange(hour, 5, 10)) {
+      period = 'evening'
+    } else {
+      period = 'night'
+    }
+    let greeting = `Good ${period}! :)`
+    return <div className="greeting-text">{greeting}</div>
+  }
+
   render() {
     const { rotateView, viewIndex, widgets } = this.state;
     return (
       <div className="dash">
-        <div className="dash__greeting">DASHBOARD GREETING</div>
-        <DashCarousel rotateView={rotateView} viewIndex={viewIndex} items={widgets} />
-        <div className="dash__ticker">TICKER</div>
+        <div className="dash__greeting">{this.getGreeting()}</div>
+        <DashCarousel rotateView={rotateView} viewIndex={viewIndex} items={widgets} paths={this.props}/>
       </div>
     )
   }

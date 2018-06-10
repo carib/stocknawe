@@ -11,9 +11,11 @@ export const SearchBar = (props) => {
         <div className="search-bar__icon">
           <SVG.SearchIcon />
         </div>
-        <input className='search-bar__input'
+        <input
+          className='search-bar__input'
           value={ props.value }
-          onChange={ props.onChange } />
+          onChange={ props.onChange }
+          autoFocus={true}/>
         <button className='button__search' onClick={ props.onClick }>Search</button>
       </form>
     </div>

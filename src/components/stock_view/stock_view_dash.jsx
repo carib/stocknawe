@@ -34,15 +34,27 @@ class StockView extends Component {
   componentDidMount() {
     const widget = document.getElementsByClassName('dash-widget')[0];
     const stats = document.getElementsByClassName('key-stats')[0];
+    // debugger
     if (widget && stats) {
       widget.classList.add('single-stock');
       stats.classList.add('single-stock');
       Array.from(widget.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
       Array.from(stats.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
     }
+    if (!this.props.selectedStock) {
+      this.setState((state, props) => {
+        let stock = this.props.fetchStocksData([this.props.match.params.symbol])
+        return {
+          ...state,
+          stock
+        }
+      })
+    }
   }
 
+
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     this.setState({
       stock: nextProps.selectedStock,
       onView: true,
@@ -55,6 +67,7 @@ class StockView extends Component {
 
   render() {
     const { stock, onView } = this.state;
+    console.log(this.state);
     if (stock && onView) {
       return (
         <div className="stock-view">
@@ -78,14 +91,4 @@ class StockView extends Component {
     }
   }
 }
-// <ChartControl handleClick={this.handleClick} />
-// const ChartControl = (props) => {
-//   return (
-//     <div className="chart-controls">
-//       <div className="chart-controls__options">CONTROLS</div>
-//       <div className="chart-controls__range-selector"></div>
-//     </div>
-//   )
-// }
-
 export default StockView;

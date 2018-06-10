@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import _ from 'lodash';
 
 import MiniChart from './mini_chart';
 
-export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast, parentComponent }) => {
+export const DashWidget = ({ item, viewIndex, isFirst, isLast, paths }) => {
 
   if (item) {
     const { quote } = item[1];
@@ -24,29 +25,30 @@ export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast, pare
     }
 
     return (
-      <div className='dash-widget'>
-
-        <div className="dash-widget__vitals">
-          <div className="dash-widget__title">
-            <div className="dash-widget__symbol">{quote.symbol}</div>
-            <div className="dash-widget__company-name">{clippedName}</div>
-          </div>
-          <div className="dash-widget__price">
-            <div className="dollar-sign">{'$'}</div>
-            <div className="dollars">{dollars}</div>
-            <div className="cents">{cents}</div>
-          </div>
-          <div className="dash-widget__change-wrap">
-            <div className="dash-widget__change">{quote.change}</div>
-            <div className="dash-widget__change-percent">
-              {`${_.round(quote.changePercent * 100, 2)}%`}
+      <Link to={`/stocks/${quote.symbol}`} className='dash-widget__link'>
+        <div className='dash-widget' >
+          <div className="dash-widget__vitals">
+            <div className="dash-widget__title">
+              <div className="dash-widget__symbol">{quote.symbol}</div>
+              <div className="dash-widget__company-name">{clippedName}</div>
             </div>
+            <div className="dash-widget__price">
+              <div className="dollar-sign">{'$'}</div>
+              <div className="dollars">{dollars}</div>
+              <div className="cents">{cents}</div>
+            </div>
+            <div className="dash-widget__change-wrap">
+              <div className="dash-widget__change">{quote.change}</div>
+              <div className="dash-widget__change-percent">
+                {`${_.round(quote.changePercent * 100, 2)}%`}
+              </div>
+            </div>
+            <div style={indicatorStyle} className={`dash-widget__indicator`}></div>
           </div>
-          <div style={indicatorStyle} className={`dash-widget__indicator`}></div>
+          <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
         </div>
+      </Link>
 
-        <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
-      </div>
     )
   } else {
     return <div className="loading">Loading...</div>
