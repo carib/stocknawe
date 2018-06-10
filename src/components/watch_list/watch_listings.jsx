@@ -3,8 +3,7 @@ import React from 'react';
 import { WatchListItem } from './watch_list_item';
 
 export const WatchListings = (props) => {
-  const { items, rotateView, viewIndex, setSelected, style } = props;
-
+  const { items, rotateView, viewIndex, setSelected, style } = props;  
   function handleClick(e) {
     if (e) e.preventDefault()
     rotateView()

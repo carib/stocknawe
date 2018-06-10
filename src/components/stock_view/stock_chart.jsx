@@ -1,17 +1,18 @@
 import React from 'react';
 
 import { Line } from 'react-chartjs-2';
-import _ from 'lodash';
+
+import * as Util from '../util/util';
 
 const StockChart = (props) => {
-  const { chart, quote } = props.stock;
-  const cLength = chart.length
+  const { quote } = props.stock;
+  const parsedData = Util.parseStockData(props.stock, ['high', 'low']);
   const data = {
-    labels: chart.slice(cLength - 7, cLength).map(date => `${date.label}`),
+    labels: parsedData.dates,
     datasets: [
       {
         label: `High`,
-        data: Object.values(chart).slice(0,7).map(date => _.round(date.high, 2)),
+        data: parsedData.prices['high'],
         fill: true,
         borderColor: '#00FF7F',
         pointBorderColor: '#00FF7F',
@@ -22,7 +23,7 @@ const StockChart = (props) => {
       },
       {
         label: `Low`,
-        data: Object.values(chart).slice(0,7).map(date => _.round(date.low, 2)),
+        data: parsedData.prices['low'],
         fill: true,
         borderColor: 'tomato',
         pointBorderColor: 'tomato',

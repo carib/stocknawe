@@ -95,6 +95,19 @@
   grid-row: 16 / span 4;
 }
 
+.stock-view__title > .dash-widget > .dash-widget__vitals {
+  background-color: transparent;
+}
+
+.stock-view__title > .dash-widget > .dash-widget__key-stats {
+  background-color: transparent;
+}
+
+.stock-view__title > .dash-widget > .dash-widget__mini-chart {
+  background-color: transparent;
+}
+
+
 /* ******************************************* WIDGET VITALS */
 .dash-widget__title {
  font-weight: 700;
@@ -110,7 +123,7 @@
 
 .dash-widget__price {
   font-size: 3em;
-  font-weight: 700;
+  font-weight: 900;
   text-align: left;
   grid-column: 1 / span 12;
   grid-row: 4 / span 3;

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 
 import _ from 'lodash';
 
 import { WatchListings } from './watch_listings';
 import { SearchBar } from '../search/search_bar';
 
-import * as SVG from '../../svg_util';
+import * as SVG from '../util/svg_util';
 
 import './watch_list.css';
 
@@ -78,6 +80,10 @@ class WatchList extends Component {
     this.props.setSelected(stock);
   }
 
+  redirectHome() {
+
+  }
+
   render() {
     const {
       initialized,
@@ -86,7 +92,6 @@ class WatchList extends Component {
       viewIndex,
       listOpen
     } = this.state;
-
     if (initialized) {
       let listGridRow = _.size(watchedItems) + 2;
       const listStyle = {
@@ -96,32 +101,41 @@ class WatchList extends Component {
         gridRow: `${listGridRow + 3} / span ${28 - listGridRow}`
       }
       return (
-        <div className={listOpen ? 'watch-list' : 'watch-list closed'}>
-          <div className="watch-list__toggle" onClick={this.toggleList}>{'<'}</div>
-          <div className="watch-list__search">
-            <SearchBar
-              value={searchQuery}
-              onClick={this.handleClick}
-              onChange={this.handleChange}
-            />
-          </div>
+        <div className="sidebar-wrap">
+          <header className="App-header">
+            <Link to='/'>
+              <div className='home-link'>HOME</div>
+            </Link>
+          </header>
+          <div className="sidebar">
+            <div className={listOpen ? 'watch-list' : 'watch-list closed'}>
+              <div className="watch-list__toggle" onClick={this.toggleList}>{'<'}</div>
+              <div className="watch-list__search">
+                <SearchBar
+                  value={searchQuery}
+                  onClick={this.handleClick}
+                  onChange={this.handleChange}
+                  />
+              </div>
 
-          <WatchListings
-            style={listStyle}
-            items={Object.entries(watchedItems)}
-            rotateView={this.rotateView}
-            viewIndex={viewIndex}
-            setSelected={this.handleSelection}
-          />
+              <WatchListings
+                style={listStyle}
+                items={Object.entries(watchedItems)}
+                rotateView={this.rotateView}
+                viewIndex={viewIndex}
+                setSelected={this.handleSelection}
+                />
 
-        <div className="watch-list__controls" style={controlsStyle}>
-            <div className="button-wrap">
-              <button className="button__watch-list more" onClick={this.handleClick}>
-                <SVG.moreButton />
-              </button>
-              <button className="button__watch-list less" onClick={this.handleClick}>
-                <SVG.lessButton />
-              </button>
+              <div className="watch-list__controls" style={controlsStyle}>
+                <div className="button-wrap">
+                  <button className="button__watch-list more" onClick={this.handleClick}>
+                    <SVG.moreButton />
+                  </button>
+                  <button className="button__watch-list less" onClick={this.handleClick}>
+                    <SVG.lessButton />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

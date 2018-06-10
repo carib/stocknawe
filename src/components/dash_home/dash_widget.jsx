@@ -4,15 +4,19 @@ import _ from 'lodash';
 
 import MiniChart from './mini_chart';
 
-export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast }) => {
-  // debugger
+export const DashWidget = ({ item, handleClick, viewIndex, isFirst, isLast, parentComponent }) => {
+
   if (item) {
     const { quote } = item[1];
     const { companyName } = quote;
     let clippedName = /^(.*\sInc\.)/.test(companyName) ? companyName.match(/^(.*\sInc\.)/)[0] : companyName;
     let indicatorColor = quote.change < 0 ? 'negative' : 'positive';
+
+    if (parentComponent) {
+
+    }
     return (
-      <div className="dash-widget">
+      <div className='dash-widget'>
 
         <div className="dash-widget__vitals">
           <div className="dash-widget__title">

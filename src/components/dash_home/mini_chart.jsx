@@ -1,20 +1,19 @@
 import React from 'react';
 
 import { Line } from 'react-chartjs-2';
-import _ from 'lodash';
+
+import * as Util from '../util/util';
 
 const MiniChart = ({ stock }) => {
   const { quote } = stock;
-  const parsedData = parseStockData(stock)
+  const parsedData = Util.parseStockData(stock, ['close']);
   let color = 'black';
-  // let color = quote.change < 0 ? '#F03A3A' : '#00FF7F';
-
   const data = {
     labels: parsedData.dates,
     datasets: [
       {
         label: `Close`,
-        data: parsedData.prices,
+        data: parsedData.prices['close'],
         fill: true,
         borderColor: color,
         pointBorderColor: color,
@@ -98,28 +97,6 @@ const MiniChart = ({ stock }) => {
   return (
     <Line data={data} options={options} width={100} redraw={true}/>
   )
-}
-
-function parseStockData({ chart, quote }) {
-  let dates = _.reverse(chart.map(data => data.date));
-  let prices = _.reverse(Object.values(chart));
-  let latestDate = `${new Date().getMonth() + 1}/${new Date().getDate()}`;
-  let latestPrice = _.round(quote.latestPrice, 2);
-
-  prices = prices.slice(0, new Date().getDay() - 1)
-  prices = prices.map(date => _.round(date.close, 2));
-  _.reverse(prices)
-  prices.push(latestPrice);
-
-  dates = dates.slice(0, new Date().getDay() - 1).map(date => {
-    date = date.slice(5).split('-')
-    date = date.map(num => parseInt(num, 10).toString())
-    return date.join('/')
-  });
-  _.reverse(dates)
-  dates.push(latestDate);
-
-  return { prices, dates };
 }
 
 export default MiniChart;

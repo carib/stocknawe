@@ -40,9 +40,10 @@ class App extends React.Component {
     const stocksURL = `https://api.iextrading.com/1.0/ref-data/symbols`;
     fetch(stocksURL)
       .then(response => response.json())
-      .then(json => {
-        this.setState({ availableStocks: json })
-      });
+      .then(availableStocks => {
+        this.setState({ availableStocks })
+      })
+      .catch(error => console.log(error))
   }
 
   fetchStocksData(symbols) {
@@ -54,9 +55,10 @@ class App extends React.Component {
                 `&last=5`;
     fetch(url)
       .then(response => response.json())
-      .then(json => {
-        this.setState({ watchList: json })
-      });
+      .then(watchList => {
+        this.setState({ watchList })
+      })
+      .catch(error => console.log(error))
   }
 
   updateWatchList(stocks) {
@@ -84,24 +86,27 @@ class App extends React.Component {
     return (
       <Router>
         <main className="App">
-          <header className="App-header">
-            <Link to='/'>
-              <div className='home-link'>HOME</div>
-            </Link>
-          </header>
-          <div className="sidebar">
-            <WatchList watchedItems={watchList}
-              setSelected={this.setSelected}
-              updateWatchList={this.updateWatchList}/>
-          </div>
-          <Switch>
-            <Route exact path='/'
-              render={(props) => <Dashboard {...props}
-              watchList={watchList} fetchAvailable={this.fetchAvailable}
-              fetchStocksData={this.fetchStocksData}/> }/>
-            <Route path="/stocks/:symbol"
-              render={(props) => <StockView {...props} selectedStock={this.state.selectedStock}/>} />
-          </Switch>
+          <Route path='/'
+            render={(props) => (
+              <WatchList watchedItems={watchList}
+                setSelected={this.setSelected}
+                updateWatchList={this.updateWatchList}/>
+            )}/>
+            <Switch>
+              <Route exact path='/'
+                render={(props) => (
+                  <Dashboard {...props}
+                    watchList={watchList}
+                    fetchAvailable={this.fetchAvailable}
+                    fetchStocksData={this.fetchStocksData}/>
+                )}/>
+              <Route path="/stocks/:symbol"
+                render={(props) => (
+                  <StockView {...props}
+                    selectedStock={this.state.selectedStock}
+                    fetchStocksData={this.fetchStocksData}/>
+                )}/>
+            </Switch>
         </main>
       </Router>
     );

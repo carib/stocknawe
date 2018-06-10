@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Lato:100,200,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Lato:100,200,300,400,700,900");
 
 :root {
   --md-aqua:     #66CDAA;
@@ -75,7 +75,7 @@ a {
   text-align: center;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 12.5%);
   font-family: 'Lato';
 }
 
@@ -101,20 +101,16 @@ a {
   grid-row: 2 / span 8;
 }
 
-.content {
-  overflow: hidden;
-  display: grid;
-  grid-column: span 11;
-  grid-row: span 8;
-  grid-template-rows: 1fr 2fr 3fr;
-}
-
 [class^='mock'] {
   box-sizing: border-box;
-  /* box-shadow: 0px 0px 5px 0px var(--rest-shade); */
-  border: 1px solid black;
+  box-shadow: 0px 0px 0px 1px black;
+  /* border: 1px solid black; */
 }
 
 [class^='button'] {
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }

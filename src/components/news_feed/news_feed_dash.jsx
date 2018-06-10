@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import _ from 'lodash';
-import axios from 'axios';
 
 import { FeedList } from './news_feed_list';
 import './news_feed.css';
@@ -19,7 +18,6 @@ class NewsFeed extends Component {
 
   componentWillMount() {
     const { stock } = this.props
-    console.log(stock);
     this.fetchNews(stock.quote, stock.chart[0].date)
     this.setState({
       symbol: stock.symbol
@@ -38,12 +36,12 @@ class NewsFeed extends Component {
 
   fetchNews(stock, date) {
     const key = 'ff929253a79a40478359573471e7a68e';
-    const url = `https://newsapi.org/v2/everything?q=${stock.symbol},${stock.companyName}&language=en&to=${date}&sortBy=relevancy&apikey=${key}`;
-    axios.get(url)
-      .then(res => {
-        console.log(res);
-        let articles = _.uniqBy(res.data['articles'], 'title');
-        console.log(articles);
+    const url = `https://newsapi.org/v2/everything?q=${stock.symbol},${stock.companyName}&language=en&to=${date}&sortBy=publishedAt&apikey=${key}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(json => {
+        let articles = _.values(json.articles);
+        articles = _.uniqBy(articles, 'title');
         this.setState((state, props) => {
           return {
             ...state,
@@ -51,7 +49,7 @@ class NewsFeed extends Component {
           }
         });
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
   }
 
   render() {
