@@ -78,4 +78,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default withRouter(Dashboard);
+export default Dashboard;
