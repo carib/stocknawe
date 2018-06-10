@@ -21,7 +21,7 @@
   font-weight: 700;
   text-align: left;
   height: 70%;
-  width: 31%;
+  width: 40%;
 }
 
 .dash__carousel {
@@ -31,9 +31,7 @@
   padding-right: 0.5em;
   grid-column-gap: 5px;
   overflow-y: scroll;
-  grid-template-columns: repeat(40, 1fr);
-  grid-auto-flow: dense;
-  grid-auto-rows: 165px;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
 }
 
 .dash__ticker {
@@ -45,11 +43,7 @@
 /* ******************************************* CAROUSEL */
 
 .dash-widget {
-  /* grid-row: span 2; */
-  /* margin-top: 3px;
-  margin-bottom: 1px; */
   display: grid;
-  /* grid-column: span 8; */
   grid-template-rows: repeat(20, 1em);
   border-radius: 3px;
   transform: none;
@@ -68,7 +62,7 @@
   grid-row: span 2;
   margin-top: 3px;
   margin-bottom: 1px;
-grid-column: span 8;
+/* grid-column: span 8; */
 }
 
 .dash-widget:hover {

@@ -56,9 +56,9 @@ class Dashboard extends React.Component {
     let period;
     if (hour < 12) {
       period = 'morning'
-    } else if (_.inRange(hour, 12, 5)) {
+    } else if (_.inRange(hour, 12, 17)) {
       period = 'afternoon'
-    } else if (_.inRange(hour, 5, 10)) {
+    } else if (_.inRange(hour, 17, 22)) {
       period = 'evening'
     } else {
       period = 'night'
@@ -78,4 +78,4 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

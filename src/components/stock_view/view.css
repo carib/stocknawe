@@ -118,7 +118,7 @@
 }
 
 .dash-widget__indicator.single-stock {
-  grid-row: 1 / span 8;
+  grid-row: 1 / span 3;
   border-radius: 0;
 }
 

@@ -34,7 +34,7 @@ class App extends React.Component {
   componentDidMount() {
     let symbols = Mock.watchList;
     this.fetchStocksData(symbols);
-    this.fetchAvailable();
+    // this.fetchAvailable();
   }
 
   fetchAvailable() {
