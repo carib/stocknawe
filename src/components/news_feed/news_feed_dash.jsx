@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom'
 
 import _ from 'lodash';
 
@@ -57,4 +58,4 @@ class NewsFeed extends Component {
   }
 }
 
-export default NewsFeed;
+export default withRouter(NewsFeed);
