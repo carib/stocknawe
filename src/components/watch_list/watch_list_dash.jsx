@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import _ from 'lodash';
 
@@ -89,4 +89,4 @@ class WatchList extends Component {
   }
 }
 
-export default WatchList;
+export default withRouter(WatchList);
