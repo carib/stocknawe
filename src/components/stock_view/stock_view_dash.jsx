@@ -34,8 +34,8 @@ class StockView extends Component {
   componentDidMount() {
     const widget = document.getElementsByClassName('dash-widget')[0];
     if (widget) {
-      widget.classList.add('stock-view');
-      Array.from(widget.getElementsByTagName('*')).forEach(node => node.classList.add('stock-view'));
+      widget.classList.add('single-stock');
+      Array.from(widget.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
     }
   }
 

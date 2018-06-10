@@ -95,19 +95,6 @@
   grid-row: 16 / span 4;
 }
 
-.stock-view__title > .dash-widget > .dash-widget__vitals {
-  background-color: transparent;
-}
-
-.stock-view__title > .dash-widget > .dash-widget__key-stats {
-  background-color: transparent;
-}
-
-.stock-view__title > .dash-widget > .dash-widget__mini-chart {
-  background-color: transparent;
-}
-
-
 /* ******************************************* WIDGET VITALS */
 .dash-widget__title {
  font-weight: 700;
