@@ -7,49 +7,48 @@ import MiniChart from './mini_chart';
 
 export const DashWidget = ({ item, viewIndex, isFirst, isLast, paths }) => {
 
-  if (item) {
-    const { quote } = item[1];
-    const { companyName } = quote;
-    const splitPrice = quote.latestPrice.toString().split('.')
-    let clippedName = /^(.*\sInc\.)/.test(companyName) ? companyName.match(/^(.*\sInc\.)/)[0] : companyName;
-    let indicatorColor = quote.change >= 0 ? '#00FF7F' : '#F03A3A';
+  const { quote } = item[1];
+  const { companyName } = quote;
+  const splitPrice = quote.latestPrice.toString().split('.')
+  let clippedName = /^(.*\sInc\.)/.test(companyName) ? companyName.match(/^(.*\sInc\.)/)[0] : companyName;
+  let indicatorColor = quote.change >= 0 ? '#00FF7F' : '#F03A3A';
 
-    let dollars = splitPrice[0];
-    let cents = '.' + splitPrice[1];
-    if (cents.length < 3) {
-      cents += '0'
-    }
+  let dollars = splitPrice[0];
+  let cents = '.' + splitPrice[1];
+  if (cents.length < 3) {
+    cents += '0'
+  }
 
-    const indicatorStyle = {
-      boxShadow: `0px 0px 0px 1px ${indicatorColor}`
-    }
+  const indicatorStyle = {
+    boxShadow: `0px 0px 0px 1px ${indicatorColor}`
+  }
 
-    return (
-      <Link to={`/stocks/${quote.symbol}`} className='dash-widget__link'>
-        <div className='dash-widget' >
-          <div className="dash-widget__vitals">
-            <div className="dash-widget__title">
-              <div className="dash-widget__symbol">{quote.symbol}</div>
-              <div className="dash-widget__company-name">{clippedName}</div>
-            </div>
-            <div className="dash-widget__price">
-              <div className="dollar-sign">{'$'}</div>
-              <div className="dollars">{dollars}</div>
-              <div className="cents">{cents}</div>
-            </div>
-            <div className="dash-widget__change-wrap">
-              <div className="dash-widget__change">{quote.change}</div>
-              <div className="dash-widget__change-percent">
-                {`${_.round(quote.changePercent * 100, 2)}%`}
-              </div>
-            </div>
-            <div style={indicatorStyle} className={`dash-widget__indicator`}></div>
+  return (
+    <Link to={`/stocks/${quote.symbol}`} className='dash-widget__link'>
+      <div className='dash-widget' >
+        <div className="dash-widget__vitals">
+          <div className="dash-widget__title">
+            <div className="dash-widget__symbol">{quote.symbol}</div>
+            <div className="dash-widget__company-name">{clippedName}</div>
           </div>
-          <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
+          <div className="dash-widget__price">
+            <div className="dollar-sign">{'$'}</div>
+            <div className="dollars">{dollars}</div>
+            <div className="cents">{cents}</div>
+          </div>
+          <div className="dash-widget__change-wrap">
+            <div className="dash-widget__change">{quote.change}</div>
+            <div className="dash-widget__change-percent">
+              {`${_.round(quote.changePercent * 100, 2)}%`}
+            </div>
+          </div>
+          <div style={indicatorStyle} className={`dash-widget__indicator`}></div>
         </div>
-      </Link>
-
-    )
+        <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
+      </div>
+    </Link>
+  )
+  if (item) {
   } else {
     return <div className="loading">Loading...</div>
   }

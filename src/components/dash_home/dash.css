@@ -62,7 +62,7 @@
   grid-row: span 2;
   margin-top: 3px;
   margin-bottom: 1px;
-/* grid-column: span 8; */
+grid-column: span 1;
 }
 
 .dash-widget:hover {

@@ -94,31 +94,32 @@ class App extends React.Component {
     return (
       <Router>
         <main className="App">
-          <Route path='/'
+          <Route exact path='/'
             render={(props) => (
-              <WatchList
-                fetchStocksData={this.fetchStocksData}
-                availableStocks={availableStocks}
-                watchedItems={watchList}
-                searchResults={searchResults}
+              <Dashboard {...props}
+                watchList={watchList}
+                fetchAvailable={this.fetchAvailable}
                 setSelected={this.setSelected}
-                updateWatchList={this.updateWatchList}/>
+                fetchStocksData={this.fetchStocksData}/>
             )}/>
-            <Switch>
-              <Route exact path='/'
-                render={(props) => (
-                  <Dashboard {...props}
-                    watchList={watchList}
-                    fetchAvailable={this.fetchAvailable}
-                    setSelected={this.setSelected}
-                    fetchStocksData={this.fetchStocksData}/>
-                )}/>
-              <Route path="/stocks/:symbol"
-                render={(props) => (
-                  <StockView {...props}
-                    selectedStock={this.state.selectedStock}
-                    fetchStocksData={this.fetchStocksData}/>
-                )}/>
+          <Switch>
+            <Route path='/'
+              render={(props) => (
+                <WatchList
+                  fetchStocksData={this.fetchStocksData}
+                  availableStocks={availableStocks}
+                  watchedItems={watchList}
+                  searchResults={searchResults}
+                  setSelected={this.setSelected}
+                  updateWatchList={this.updateWatchList}/>
+              )}/>
+            <Route path="/stocks/:symbol"
+              render={(props) => (
+                <StockView {...props}
+                  watchList={watchList}
+                  selectedStock={this.state.selectedStock}
+                  fetchStocksData={this.fetchStocksData}/>
+              )}/>
             </Switch>
         </main>
       </Router>

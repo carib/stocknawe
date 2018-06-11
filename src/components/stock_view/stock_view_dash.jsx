@@ -34,7 +34,6 @@ class StockView extends Component {
   componentDidMount() {
     const widget = document.getElementsByClassName('dash-widget')[0];
     const stats = document.getElementsByClassName('key-stats')[0];
-    // debugger
     if (widget && stats) {
       widget.classList.add('single-stock');
       stats.classList.add('single-stock');
@@ -54,38 +53,34 @@ class StockView extends Component {
 
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    debugger
     this.setState({
       stock: nextProps.selectedStock,
       onView: true,
     })
   }
 
-  handleClick(e) {
-    e.preventDefault();
-  }
-
   render() {
     const { stock, onView } = this.state;
     console.log(this.state);
-    if (stock && onView) {
-      return (
-        <div className="stock-view">
-          <div className="stock-view__title">
-            <DashWidget item={[stock.quote.symbol, stock]}
-              fetchStocksData={this.props.fetchStocksData}/>
-          </div>
-          <div className="stock-view__chart">
-            <div className="chart-view">
-              <StockChart stock={stock} />
-            </div>
-            <WidgetKeyStats quote={stock.quote}/>
-          </div>
-          <div className="stock-view__feed-dash">
-            <NewsFeed stock={stock} />
-          </div>
+    return (
+      <div className="stock-view">
+        <div className="stock-view__title">
+          <DashWidget item={[stock.quote.symbol, stock]}
+            fetchStocksData={this.props.fetchStocksData}/>
         </div>
-      )
+        <div className="stock-view__chart">
+          <div className="chart-view">
+            <StockChart stock={stock} />
+          </div>
+          <WidgetKeyStats quote={stock.quote}/>
+        </div>
+        <div className="stock-view__feed-dash">
+          <NewsFeed stock={stock} />
+        </div>
+      </div>
+    )
+    if (stock && onView) {
     } else {
       return <Redirect to='/' />
     }
