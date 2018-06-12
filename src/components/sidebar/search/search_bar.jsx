@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as SVG from '../util/svg_util';
+import * as SVG from '../../util/svg_util';
 
 import './search.css';
 
