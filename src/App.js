@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch
+  Switch,
+  withRouter
 } from 'react-router-dom';
 
 import _ from 'lodash';
 
 import { AppContext } from './context_api';
 
-import Dashboard from './components/dash_home/dash';
+import { Dashboard } from './components/dash_home/dash';
 import WatchList from './components/watch_list/watch_list_dash';
 import StockView from './components/stock_view/stock_view_dash';
 import * as Mock from './components/mock_values/mock_user_values';
@@ -20,7 +21,7 @@ import './App.css';
 class App extends Component {
 
   state = {
-    selectedStock: null,
+    selectedStock: {},
     watchList: {},
     searchResults: {},
     availableStocks: [],
@@ -88,18 +89,27 @@ class App extends Component {
     })
   }
 
-  setSelected = (stock) => {
-    stock = _.merge({}, stock[1]);
+  handleHomeButton(e) {
+    console.log('click');
+    this.setState({
+      onView: false
+    })
+  }
+
+  setSelected = (e) => {
+    let symbol = e.currentTarget.dataset.stock
     let selected = document.getElementsByClassName('selected')[0];
-    let nextSelected = Array.from(document.getElementsByName(stock.quote.symbol));
+    let nextSelected = Array.from(document.getElementsByName(symbol));
     _.each(nextSelected, (node) => node.classList.add('selected'));
     if (selected) {
       selected.classList.remove('selected');
     }
+
     this.setState((state, props) => {
       return {
         ...state,
-        selectedStock: stock,
+        selectedStock: this.state.watchList[symbol],
+        onView: true,
       }
     })
   }
@@ -107,48 +117,49 @@ class App extends Component {
   render = () => {
     const { watchList, availableStocks, searchResults, selectedStock } = this.state;
     return (
-        <Router>
-          <main className="App">
-            <AppContext.Provider value={
-                {
-                  state: this.state,
-                  actions: {
-                    setSelected: event => this.setSelected(event),
-                    fetchAvailable: event => this.fetchAvailable(event),
-                    fetchStocksData: event => this.fetchStocksData(event),
-                    updateWatchList: event => this.updateWatchList(event),
-                  }
-                }
-              }>
-              <WatchList
-                fetchStocksData={this.fetchStocksData}
-                availableStocks={availableStocks}
-                watchedItems={watchList}
-                searchResults={searchResults}
-                setSelected={this.setSelected}
-                updateWatchList={this.updateWatchList}/>
-              <Switch>
+      <main className="App">
+        <AppContext.Provider value={
+            {
+              state: this.state,
+              actions: {
+                setSelected: event => this.setSelected(event),
+                fetchAvailable: event => this.fetchAvailable(event),
+                fetchStocksData: event => this.fetchStocksData(event),
+                updateWatchList: event => this.updateWatchList(event),
+                handleHomeButton: event => this.handleHomeButton(event),
+              }
+            }
+          }>
+          <AppContext.Consumer>
+            {({state, actions}) => {
+              return (
+                <WatchList
+                  fetchStocksData={actions.fetchStocksData}
+                  availableStocks={state.availableStocks}
+                  watchedItems={state.watchList}
+                  searchResults={state.searchResults}
+                  setSelected={actions.setSelected}
+                  updateWatchList={actions.updateWatchList}
+                  goHome={actions.handleHomeButton}
+                  />
+              )
+            }}
+          </AppContext.Consumer>
+          <Switch>
 
-                <Route exact path='/' render={(props) => (
-                  <Dashboard {...props}
-                    watchList={watchList}
-                    fetchAvailable={this.fetchAvailable}
-                    setSelected={this.setSelected}
-                    fetchStocksData={this.fetchStocksData}/>
-                )}/>
-                <Route path="/stocks/:symbol"
-                  render={(props) => (
-                    <StockView {...props}
-                      watchList={watchList}
-                      selectedStock={selectedStock}
-                      fetchStocksData={this.fetchStocksData}/>
-                  )}/>
-              </Switch>
-            </AppContext.Provider>
-          </main>
-        </Router>
+            <Route exact path='/' component={Dashboard}/>
+            <Route path="/stocks/:symbol"
+              render={(props) => (
+                <StockView {...props}
+                  watchList={watchList}
+                  selectedStock={selectedStock}
+                  fetchStocksData={this.fetchStocksData}/>
+              )}/>
+            </Switch>
+          </AppContext.Provider>
+        </main>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

@@ -31,8 +31,8 @@ export const WatchListItem = (props) => {
   const handleItemClick = () => setSelected(item);
 
   return (
-    <Link to={`/stocks/${symbol}`} onClick={handleItemClick} className='list-item__link'>
-      <div className={isLast ? 'list-item last' : "list-item"} name={symbol}>
+    <Link to={`/stocks/${symbol}`} className='list-item__link'>
+      <div className={isLast ? 'list-item last' : "list-item"} data-stock={symbol} onClick={setSelected} >
         <div className="list-item__title">
           {symbol}
         </div>

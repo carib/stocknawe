@@ -8,7 +8,6 @@ export const DashCarousel = () => {
   return (
     <AppContext.Consumer>
       {({ state, actions }) => {
-        // debugger
         let items = Object.entries(state.watchList);
         return (
           <div className="dash__carousel">

@@ -10,6 +10,7 @@
 
 .stock-view__title {
   z-index: 4;
+  margin-top: 10px;
   padding-left: 1%;
   grid-row: 1 / span 4;
   grid-column: span 12;
@@ -35,15 +36,16 @@
 }
 
 /* ******************************************* TITLE MAIN */
-.dash-widget.single-stock {
+.stock-view-widget {
   grid-row: 1 / span 2;
   grid-column: 1;
+  display: grid;
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
   box-shadow: none;
   border-radius: 0;
 }
 
-.dash-widget.single-stock:hover {
+.stock-view-widget:hover {
   border-radius: 0;
   box-shadow: none;
   z-index: 4;
@@ -56,21 +58,24 @@
 /* ******************************************* CHART MAIN */
 .chart-view {
   grid-column: 22 / span 17;
-  grid-row: 1 / span 11;
+  grid-row: 1 / span 9;
   height: 100%;
   width: 95%;
 }
 
 /* ******************************************* STOCK WIDGET MAIN */
 
-.dash-widget__vitals.single-stock {
+.stock-view-widget__vitals {
   padding: 5px 0px 1px 10px;
   grid-column: 1 / span 5;
   grid-row: 1 / span 10;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, minmax(23px, 1fr));
   text-indent: 0%;
 }
 
-.key-stats.single-stock {
+.key-stats {
   margin-left: 6px;
   grid-column: 1 / span 20;
   grid-row: 1 / span 10;
@@ -80,12 +85,12 @@
   grid-template-rows: repeat(3, 1fr);
 }
 
-.dash-widget__mini-chart.single-stock {
+.stock-view-widget__mini-chart {
   display: none;
 }
 
 /* ******************************************* STOCK VITALS */
-.dash-widget__title.single-stock {
+.stock-view-widget__title {
   grid-row: 1 / span 3;
   grid-column: 1 / span 5;
   display: grid;
@@ -94,36 +99,44 @@
   text-align: left;
   padding: 0;
   margin: 0;
+  font-weight: 700;
   line-height: 1;
 }
 
-.dash-widget__price.single-stock {
+.stock-view-widget__price {
   grid-row: 4 / span 6;
   grid-column: 1 / span 8;
-  line-height: 1.1;
+  line-height: 1.3;
   margin-left: -3px;
   text-align: left;
   font-size: 5.3em;
+  font-weight: 900;
+  padding-left: 5px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
 
-.dash-widget__change-wrap.single-stock {
+.stock-view-widget__change-wrap {
   grid-row: 1 / span 2;
   grid-column: 11 / span 2;
   line-height: 1;
   font-size: 1.4em;
+  font-weight: 700;
+  display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 50% 50%;
   text-align: right;
   padding-right: 3px;
 }
 
-.dash-widget__indicator.single-stock {
+.stock-view-widget__indicator {
+  grid-column: 1 / span 12;
   grid-row: 1 / span 3;
   border-radius: 0;
 }
 
 /* ******************************************* VITALS TITLE */
-.dash-widget__symbol.single-stock {
+.stock-view-widget__symbol {
   display: block;
   font-size: 3em;
   grid-row: 1 / span 2;
@@ -131,7 +144,7 @@
   line-height: 1.1;
 }
 
-.dash-widget__company-name.single-stock {
+.stock-view-widget__company-name {
   display: block;
   font-size: 1.1em;
   grid-row: 2;
@@ -141,16 +154,16 @@
 }
 
 /* ******************************************* VITALS CHANGE */
-.dash-widget__change.single-stock {
+.stock-view-widget__change {
   grid-row: 2;
 }
 
-.dash-widget__change-percent.single-stock {
+.stock-view-widget__change-percent {
   grid-row: 1;
 }
 
 /* ******************************************* VITALS INDICATOR */
-.dash-widget.single-stock:hover .dash-widget__indicator.single-stock {
+.stock-view-widget:hover .stock-view-widget__indicator {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   box-shadow: none;
@@ -158,7 +171,7 @@
 }
 
 /* ******************************************* VITALS PRICE */
-.dollar-sign.single-stock {
+.stock-view-widget__dollar-sign {
   font-size: 0.9em;
 }
 

@@ -59,11 +59,12 @@ class WatchList extends Component {
     const listStyle = {
       gridRow: `1 / span ${listGridRow}`
     }
+
     return (
 
       <div className="sidebar">
         <header className="sidebar-header">
-          <Link to='/'>
+          <Link to='/' onClick={this.props.goHome}>
             <div className='home-link'>
               <div className="app-name-1">STOCK</div>
               <div className="app-name-2">- n -</div>

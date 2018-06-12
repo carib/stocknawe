@@ -1,14 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import _ from 'lodash';
 
+import { Link } from 'react-router-dom';
 import MiniChart from './mini_chart';
 
-import { AppContext } from '../../context_api';
-export const DashWidget = ({ item, viewIndex, setSelected }) => {
-
-  const { quote } = item[1];
+export const DashWidget = ({ item, setSelected }) => {
+  const { quote } = item;
   const { companyName } = quote;
   const splitPrice = quote.latestPrice.toString().split('.')
   let clippedName = /^(.*\sInc\.)/.test(companyName) ? companyName.match(/^(.*\sInc\.)/)[0] : companyName;
@@ -50,11 +48,10 @@ export const DashWidget = ({ item, viewIndex, setSelected }) => {
         <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
       </div>
     </Link>
-
   )
 }
 
-export const WidgetKeyStats = ({quote}) => {
+export const KeyStats = ({quote}) => {
   let volume = _.reverse(quote.latestVolume.toString().split(''));
   volume = _.chunk(volume, 3).map(arr => arr.join(''));
   volume = _.reverse(_.flatten(volume)).join();

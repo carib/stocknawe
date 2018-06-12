@@ -1,89 +1,55 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 
-// import _ from 'lodash';
+import _ from 'lodash';
 
+import {AppContext} from '../../context_api';
 import StockChart from './stock_chart';
 import NewsFeed from '../news_feed/news_feed_dash';
-import { DashWidget, WidgetKeyStats } from '../dash_home/dash_widget';
+import { DashWidget, KeyStats } from '../dash_home/dash';
 
 import './view.css';
 
 class StockView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      stock: {},
-      onView: false,
-      viewOptions: {
-        ranges: ["dynamic", "date", "1d", "1m", "3m", "6m", "ytd", "1y", "2y", "5y"],
-        rangeIndex: 3,
-      }
-    }
-
-    // this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentWillMount() {
-    this.setState({
-      stock: this.props.selectedStock,
-      onView: true,
-    })
-  }
-
   componentDidMount() {
-    const widget = document.getElementsByClassName('dash-widget')[0];
-    const stats = document.getElementsByClassName('key-stats')[0];
-    if (widget && stats) {
-      widget.classList.add('single-stock');
-      stats.classList.add('single-stock');
-      Array.from(widget.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
-      Array.from(stats.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
-    }
-    if (!this.props.selectedStock) {
-      console.log(this);
-      this.setState((state, props) => {
-        let stock = this.props.fetchStocksData([this.props.match.params.symbol])
-        return {
-          ...state,
-          stock
-        }
-      })
-    }
-  }
-
-
-  componentWillReceiveProps(nextProps) {
-    debugger
-    this.setState({
-      stock: nextProps.selectedStock,
-      onView: true,
-    })
+    // const widget = document.getElementsByClassName('dash-widget')[0];
+    // const stats = document.getElementsByClassName('key-stats')[0];
+    // if (widget && stats) {
+    //   widget.classList.add('single-stock');
+    //   stats.classList.add('single-stock');
+    //   Array.from(widget.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
+    //   Array.from(stats.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
+    // }
   }
 
   render() {
-    const { stock } = this.state;
-    if (stock) {
-      return (
-        <div className="stock-view">
-          <div className="stock-view__title">
-            <DashWidget item={[stock.quote.symbol, stock]}
-              fetchStocksData={this.props.fetchStocksData}/>
-          </div>
-          <div className="stock-view__chart">
-            <div className="chart-view">
-              <StockChart stock={stock} />
-            </div>
-            <WidgetKeyStats quote={stock.quote}/>
-          </div>
-          <div className="stock-view__feed-dash">
-            <NewsFeed stock={stock} />
-          </div>
-        </div>
-      )
-    } else {
-      return <Redirect to='/' />
-    }
+    return (
+      <AppContext.Consumer>
+        {({ state }) => {
+          let { selectedStock, onView } = state
+          if (_.size(selectedStock)) {
+            return (
+              <div className="stock-view">
+                <div className="stock-view__title">
+                  <DashWidget item={selectedStock} onView={onView} />
+                </div>
+                <div className="stock-view__chart">
+                  <div className="chart-view">
+                    <StockChart stock={selectedStock} />
+                  </div>
+                  <KeyStats quote={selectedStock.quote}/>
+                </div>
+                <div className="stock-view__feed-dash">
+                  <NewsFeed stock={selectedStock} />
+                </div>
+              </div>
+            )
+          } else {
+            return <Redirect to='/' />
+          }
+        }}
+      </AppContext.Consumer>
+    )
   }
 }
 export default withRouter(StockView);
