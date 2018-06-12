@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import { WatchListings } from './watch_listings';
 
-import * as SVG from '../util/svg_util';
+// import * as SVG from '../util/svg_util';
 import './watch_list.css';
 
 class WatchList extends Component {
@@ -52,7 +52,6 @@ class WatchList extends Component {
 
   render() {
     const {
-      initialized,
       watchedItems,
       viewIndex
     } = this.state;
@@ -82,10 +81,6 @@ class WatchList extends Component {
         </div>
       </div>
     )
-    if (initialized) {
-    } else {
-      return <h1>Loading...</h1>
-    }
   }
 }
 

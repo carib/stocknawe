@@ -21,7 +21,7 @@ class StockView extends Component {
       }
     }
 
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillMount() {
@@ -41,6 +41,7 @@ class StockView extends Component {
       Array.from(stats.getElementsByTagName('*')).forEach(node => node.classList.add('single-stock'));
     }
     if (!this.props.selectedStock) {
+      console.log(this);
       this.setState((state, props) => {
         let stock = this.props.fetchStocksData([this.props.match.params.symbol])
         return {
@@ -61,26 +62,25 @@ class StockView extends Component {
   }
 
   render() {
-    const { stock, onView } = this.state;
-    console.log(this.state);
-    return (
-      <div className="stock-view">
-        <div className="stock-view__title">
-          <DashWidget item={[stock.quote.symbol, stock]}
-            fetchStocksData={this.props.fetchStocksData}/>
-        </div>
-        <div className="stock-view__chart">
-          <div className="chart-view">
-            <StockChart stock={stock} />
+    const { stock } = this.state;
+    if (stock) {
+      return (
+        <div className="stock-view">
+          <div className="stock-view__title">
+            <DashWidget item={[stock.quote.symbol, stock]}
+              fetchStocksData={this.props.fetchStocksData}/>
           </div>
-          <WidgetKeyStats quote={stock.quote}/>
+          <div className="stock-view__chart">
+            <div className="chart-view">
+              <StockChart stock={stock} />
+            </div>
+            <WidgetKeyStats quote={stock.quote}/>
+          </div>
+          <div className="stock-view__feed-dash">
+            <NewsFeed stock={stock} />
+          </div>
         </div>
-        <div className="stock-view__feed-dash">
-          <NewsFeed stock={stock} />
-        </div>
-      </div>
-    )
-    if (stock && onView) {
+      )
     } else {
       return <Redirect to='/' />
     }

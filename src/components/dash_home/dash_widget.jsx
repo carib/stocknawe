@@ -5,7 +5,8 @@ import _ from 'lodash';
 
 import MiniChart from './mini_chart';
 
-export const DashWidget = ({ item, viewIndex, isFirst, isLast, paths }) => {
+import { AppContext } from '../../context_api';
+export const DashWidget = ({ item, viewIndex, setSelected }) => {
 
   const { quote } = item[1];
   const { companyName } = quote;
@@ -23,8 +24,10 @@ export const DashWidget = ({ item, viewIndex, isFirst, isLast, paths }) => {
     boxShadow: `0px 0px 0px 1px ${indicatorColor}`
   }
 
+  const handleClick = () => setSelected(item);
+
   return (
-    <Link to={`/stocks/${quote.symbol}`} className='dash-widget__link'>
+    <Link to={`/stocks/${quote.symbol}`} name={quote.symbol} className='dash-widget__link' onClick={handleClick}>
       <div className='dash-widget' >
         <div className="dash-widget__vitals">
           <div className="dash-widget__title">
@@ -47,11 +50,8 @@ export const DashWidget = ({ item, viewIndex, isFirst, isLast, paths }) => {
         <div className="dash-widget__mini-chart"><MiniChart stock={item[1]}/></div>
       </div>
     </Link>
+
   )
-  if (item) {
-  } else {
-    return <div className="loading">Loading...</div>
-  }
 }
 
 export const WidgetKeyStats = ({quote}) => {

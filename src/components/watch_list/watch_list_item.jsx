@@ -28,15 +28,7 @@ export const WatchListItem = (props) => {
     viewColor = 'negative';
   }
 
-  function handleItemClick(e) {
-    let selected = document.getElementsByClassName('selected')[0];
-    let next = e.currentTarget.firstChild;
-    next.classList.add('selected');
-    setSelected(item)
-    if (selected) {
-      selected.classList.remove('selected');
-    }
-  }
+  const handleItemClick = () => setSelected(item);
 
   return (
     <Link to={`/stocks/${symbol}`} onClick={handleItemClick} className='list-item__link'>
