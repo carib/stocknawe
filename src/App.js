@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   withRouter
@@ -24,7 +23,7 @@ class App extends Component {
     selectedStock: {},
     watchList: {},
     searchResults: {},
-    availableStocks: [],
+    // availableStocks: [],
     view: {
       stock: {},
       onView: false,
@@ -89,13 +88,6 @@ class App extends Component {
     })
   }
 
-  handleHomeButton(e) {
-    console.log('click');
-    this.setState({
-      onView: false
-    })
-  }
-
   setSelected = (e) => {
     let symbol = e.currentTarget.dataset.stock
     let selected = document.getElementsByClassName('selected')[0];
@@ -104,7 +96,6 @@ class App extends Component {
     if (selected) {
       selected.classList.remove('selected');
     }
-
     this.setState((state, props) => {
       return {
         ...state,
@@ -114,8 +105,10 @@ class App extends Component {
     })
   }
 
+
+
   render = () => {
-    const { watchList, availableStocks, searchResults, selectedStock } = this.state;
+    const { watchList, selectedStock } = this.state;
     return (
       <main className="App">
         <AppContext.Provider value={

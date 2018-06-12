@@ -28,11 +28,9 @@ export const WatchListItem = (props) => {
     viewColor = 'negative';
   }
 
-  const handleItemClick = () => setSelected(item);
-
   return (
     <Link to={`/stocks/${symbol}`} className='list-item__link'>
-      <div className={isLast ? 'list-item last' : "list-item"} data-stock={symbol} onClick={setSelected} >
+      <div className={isLast ? 'list-item last' : "list-item"} data-stock={symbol} onClick={setSelected} name={symbol}>
         <div className="list-item__title">
           {symbol}
         </div>

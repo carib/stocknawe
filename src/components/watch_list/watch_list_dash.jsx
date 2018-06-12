@@ -5,7 +5,6 @@ import _ from 'lodash';
 
 import { WatchListings } from './watch_listings';
 
-// import * as SVG from '../util/svg_util';
 import './watch_list.css';
 
 class WatchList extends Component {
@@ -46,6 +45,13 @@ class WatchList extends Component {
     });
   }
 
+  handleClick(e) {
+    let selected = document.getElementsByClassName('selected');
+    for (let i = 0; i < selected.length; i++) {
+      selected[i].classList.remove('selected')
+    }
+  }
+
   handleSelection(stock) {
     this.props.setSelected(stock);
   }
@@ -61,10 +67,9 @@ class WatchList extends Component {
     }
 
     return (
-
       <div className="sidebar">
         <header className="sidebar-header">
-          <Link to='/' onClick={this.props.goHome}>
+          <Link to='/' onClick={this.handleClick}>
             <div className='home-link'>
               <div className="app-name-1">STOCK</div>
               <div className="app-name-2">- n -</div>

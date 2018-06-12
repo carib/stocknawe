@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import _ from 'lodash';
 
@@ -31,7 +31,6 @@ export const Dashboard = () => (
   </div>
 )
 
-
 const DashCarousel = () => {
   return (
     <AppContext.Consumer>
@@ -41,13 +40,12 @@ const DashCarousel = () => {
           <div className="dash__carousel">
             {
               items.map((item, index) => {
-                const handleClick = (e) => actions.setSelected(e.currentTarget.name);
                 return (
                   <Link key={index} to={`/stocks/${item.quote.symbol}`} name={item.quote.symbol} className={`dash-widget__link`} >
                     <DashWidget
                       item={item}
                       setSelected={actions.setSelected}
-                      onView={state.onView}
+                      view={'dash'}
                     />
                   </Link>
                 )
@@ -60,13 +58,12 @@ const DashCarousel = () => {
   )
 }
 
-export const DashWidget = ({ item, setSelected, onView }) => {
+export const DashWidget = ({ item, setSelected, view }) => {
   const { quote } = item;
   const { companyName } = quote;
   const splitPrice = quote.latestPrice.toString().split('.')
   let clippedName = /^(.*\sInc\.)/.test(companyName) ? companyName.match(/^(.*\sInc\.)/)[0] : companyName;
   let indicatorColor = quote.change >= 0 ? '#00FF7F' : '#F03A3A';
-  let parent = onView ? 'stock-view' : 'dash';
   let dollars = splitPrice[0];
   let cents = '.' + splitPrice[1];
   if (cents.length < 3) {
@@ -78,26 +75,26 @@ export const DashWidget = ({ item, setSelected, onView }) => {
   }
 
   return (
-    <div className={`${parent}-widget`} data-stock={quote.symbol} onClick={setSelected}>
-      <div className={`${parent}-widget__vitals`}>
-        <div className={`${parent}-widget__title`}>
-          <div className={`${parent}-widget__symbol`}>{quote.symbol}</div>
-          <div className={`${parent}-widget__company-name`}>{clippedName}</div>
+    <div className={`${view}-widget`} data-stock={quote.symbol} onClick={setSelected} name={quote.symbol}>
+      <div className={`${view}-widget__vitals`}>
+        <div className={`${view}-widget__title`}>
+          <div className={`${view}-widget__symbol`}>{quote.symbol}</div>
+          <div className={`${view}-widget__company-name`}>{clippedName}</div>
         </div>
-        <div className={`${parent}-widget__price`}>
-          <div className={`${parent}-widget__dollar-sign`}>{'$'}</div>
-          <div className={`${parent}-widget__dollars`}>{dollars}</div>
-          <div className={`${parent}-widget__cents`}>{cents}</div>
+        <div className={`${view}-widget__price`}>
+          <div className={`${view}-widget__dollar-sign`}>{'$'}</div>
+          <div className={`${view}-widget__dollars`}>{dollars}</div>
+          <div className={`${view}-widget__cents`}>{cents}</div>
         </div>
-        <div className={`${parent}-widget__change-wrap`}>
-          <div className={`${parent}-widget__change`}>{quote.change}</div>
-          <div className={`${parent}-widget__change-percent`}>
+        <div className={`${view}-widget__change-wrap`}>
+          <div className={`${view}-widget__change`}>{quote.change}</div>
+          <div className={`${view}-widget__change-percent`}>
             {`${_.round(quote.changePercent * 100, 2)}%`}
           </div>
         </div>
-        <div style={indicatorStyle} className={`${parent}-widget__indicator`}></div>
+        <div style={indicatorStyle} className={`${view}-widget__indicator`}></div>
       </div>
-      <div className={`${parent}-widget__mini-chart`}><MiniChart stock={item}/></div>
+      <div className={`${view}-widget__mini-chart`}><MiniChart stock={item}/></div>
     </div>
   )
 }

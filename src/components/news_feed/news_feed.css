@@ -13,9 +13,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border-radius: none;
+  border-radius: 0px;
+  transform: none;
   box-shadow: 0px 0px 5px 0px var(--rest-shade);
-  transition: border-radius, transform, box-shadow 500ms ease;
+  transition: border-radius, transform, box-shadow 1000ms ease;
 }
 
 .feed-item:hover {
@@ -23,7 +24,7 @@
   transform: scale(1.005);
   box-shadow: 0px 1px 20px 0px var(--float-shade);
   border-radius: 50px;
-  transition: border-radius, transform, box-shadow 250ms ease;
+  transition: border-radius, transform, box-shadow 1000ms ease;
 }
 
 .feed-item__head {
