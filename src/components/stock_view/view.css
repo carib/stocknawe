@@ -9,7 +9,6 @@
 }
 
 .stock-view__title {
-  z-index: 4;
   margin-top: 10px;
   padding-left: 1%;
   grid-row: 1 / span 4;
@@ -45,6 +44,7 @@
   grid-template: repeat(10, 1fr) / repeat(10, 1fr);
   box-shadow: none;
   border-radius: 0;
+  z-index: 0 !important;
 }
 
 .stock-view-widget:hover {
@@ -75,6 +75,7 @@
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(8, minmax(23px, 1fr));
   text-indent: 0%;
+  z-index: 0 !important;
 }
 
 .key-stats {
@@ -103,6 +104,7 @@
   margin: 0;
   font-weight: 700;
   line-height: 1;
+  z-index: 0 !important;
 }
 
 .stock-view-widget__price {
@@ -116,6 +118,7 @@
   padding-left: 5px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  z-index: 0 !important;
 }
 
 .stock-view-widget__change-wrap {
@@ -135,6 +138,7 @@
   grid-column: 1 / span 12;
   grid-row: 1 / span 3;
   border-radius: 0;
+  z-index: 0 !important;
 }
 
 /* ******************************************* VITALS TITLE */

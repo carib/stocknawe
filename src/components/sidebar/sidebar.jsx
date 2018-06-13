@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -6,50 +6,17 @@ import _ from 'lodash';
 
 import { AppContext } from '../../context_api';
 import WatchList from './watch_list/watch_list';
-import { SearchListings } from './search/search_listings';
-import { SearchBar } from './search/search_bar';
+import SearchBar from './search/search_bar';
 import './sidebar.css';
 
 import * as SVG from '../util/svg_util';
 
-
 const SideBar = () => {
-  const handleClick = (e) => {
-    if (e) {
-      e.preventDefault();
-    }
-    if (/more/.test(e.currentTarget.classList)) {
-      this.setState({
-        searchOpen: true
-      });
-    }
-  }
-
-
-
-  const showSearchResults = ({ searchOpen, newResults }) => {
-    if (searchOpen && newResults) {
-      return (
-        <AppContext.Consumer>
-          {({state, actions}) => {
-            let items = _.entries(state.filteredStocks);
-            return (
-
-              <div className="search-results">
-                <SearchListings items={items}/>
-              </div>
-            )
-          }}
-        </AppContext.Consumer>
-      )
-    }
-  }
+  let searchOpen = false;
 
   const showSearchBar = (state, actions) => {
     if (state.searchOpen) {
-      return <SearchBar
-        value={state.searchQuery}
-        onChange={actions.handleChange}/>
+      return <SearchBar updateWatchList={ actions.updateWatchList } />
     } else {
       return <div className="not-search"></div>
     }
@@ -58,9 +25,10 @@ const SideBar = () => {
   return (
     <AppContext.Consumer>
       {({state, actions}) => {
-        let listGridRow = _.size(state.watchedItems);
+        const listSize = _.size(state.watchList)
+        let listGridRow = listSize > 12 ? 12 : listSize;
         const controlsStyle = {
-          gridRow: `${listGridRow + 16} / span ${28 - listGridRow}`
+          gridRow: `${listGridRow + 11} / span ${28 - listGridRow}`
         }
         return (
           <div className="sidebar">
@@ -75,6 +43,21 @@ const SideBar = () => {
             </header>
             <div className='watch-list'>
               <WatchList />
+              <div className="watch-list__controls" style={controlsStyle}>
+                <div className="button-wrap">
+                  <button className="button__watch-list more" onClick={actions.toggleSearchBar}>
+                    <SVG.moreButton />
+                  </button>
+                  <button className="button__watch-list less" onClick={this.handleClick}>
+                    <SVG.lessButton />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="watch-list__search">
+
+              { showSearchBar(state, actions) }
+
             </div>
           </div>
         )
@@ -82,20 +65,5 @@ const SideBar = () => {
     </AppContext.Consumer>
   )
 }
-// <div className="watch-list__controls" style={controlsStyle}>
-//   <div className="button-wrap">
-//     <button className="button__watch-list more" onClick={actions.handleClick}>
-//       <SVG.moreButton />
-//     </button>
-//     <button className="button__watch-list less" onClick={this.handleClick}>
-//       <SVG.lessButton />
-//     </button>
-//   </div>
-// </div>
-// <div className="watch-list__search">
-//   {showSearchBar(state, actions)}
-//   {showSearchResults(state)}
-// </div>
-
 
 export default SideBar;

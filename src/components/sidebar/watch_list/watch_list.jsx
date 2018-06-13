@@ -33,7 +33,7 @@ const WatchList = () => (
 
 export default WatchList;
 
-const WatchListItem = (props) => {
+export const WatchListItem = (props) => {
   const {
     item,
     isLast,
