@@ -1,12 +1,12 @@
-.search-bar, .not-search {
+.not-search { display: none; }
+.search-bar {
   position: absolute;
-  top: 8%;
+  top: 8.8%;
   left: 17%;
   width: 30em;
   height: 34em;
   box-sizing: border-box;
   grid-column: span 2 !important;
-
 }
 
 .search-results {

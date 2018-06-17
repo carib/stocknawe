@@ -1,6 +1,6 @@
 /******************************************** DASH MAIN */
 .dash {
-  margin-left: 3px;
+  /* margin-left: 3px; */
   grid-column: span 11;
   grid-row: span 8;
   display: grid;
@@ -13,6 +13,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  box-shadow: 2px 1px 1px 0px var(--float-shade);
 }
 
 .greeting-text {
@@ -27,11 +28,13 @@
 .dash__carousel {
   grid-row: 2 / span 11;
   display: grid;
-  padding-left: 0.2em;
+  margin-top: 15px;
+  padding-left: 0.3em;
   padding-right: 0.5em;
-  grid-column-gap: 5px;
+  /* grid-column-gap: 5px; */
+  grid-gap: 5px;
   overflow-y: scroll;
-  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
 }
 
 .dash__ticker {
@@ -62,7 +65,7 @@
 .dash-widget__link {
   grid-row: span 2;
   max-height: 300px;
-  margin-top: 3px;
+  margin-top: 20px;
   margin-bottom: 1px;
   grid-column: span 1;
 }
@@ -89,6 +92,7 @@
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(8, 1fr);
   grid-row: 1 / span 9;
+
 }
 
 .dash-widget__mini-chart {
@@ -101,14 +105,14 @@
 /* ******************************************* WIDGET VITALS */
 .dash-widget__title {
   grid-column: 1 / span 12;
-  grid-row: 2 / span 2;
+  grid-row: 1 / span 3;
   display: grid;
   font-weight: 700;
   grid-template-rows: auto auto;
   text-align: left;
-  padding-left: 5px;
-  padding-top: 5px;
-  line-height: 1.1;
+  padding-left: 10px;
+  padding-top: 3px;
+  line-height: 1;
 }
 
 .dash-widget__price {
@@ -116,8 +120,8 @@
   font-weight: 900;
   text-align: left;
   grid-column: 1 / span 12;
-  grid-row: 5 / span 3;
-  padding-left: 5px;
+  grid-row: 4 / span 3;
+  padding-left: 10px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
@@ -137,7 +141,8 @@
   border-top-right-radius: 2px;
   border-top-left-radius: 2px;
   grid-column: 1 / span 12;
-  grid-row: 1 / span 1;
+  grid-row: 1 / span 3;
+  box-sizing: border-box;
   transition: border-radius 1000ms ease;
 }
 
@@ -148,6 +153,8 @@
 
 .dash-widget__company-name {
  font-size: 1em;
+ white-space: nowrap;
+overflow: hidden;
 }
 
 /* ******************************************* VITALS CHANGE WRAP */

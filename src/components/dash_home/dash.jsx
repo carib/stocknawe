@@ -69,7 +69,7 @@ export const DashWidget = ({ item, setSelected, view }) => {
   }
 
   const indicatorStyle = {
-    boxShadow: `0px 0px 0px 1px ${indicatorColor}`
+    boxShadow: `inset 0px 0px 0px 1px ${indicatorColor}`
   }
 
   return (
