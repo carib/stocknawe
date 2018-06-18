@@ -61,11 +61,11 @@ const KeyStats = ({ quote }) => {
     },
     {
      className: 'day-range',
-     label: ('1-Day Range').toUpperCase(), low: `$${quote.low}`, high: `$${quote.high}`
+     label: ('1-Day Range').toUpperCase(), low: `$${quote.low}`, high: `$${_.round(quote.high, 2)}`
     },
     {
      className: 'year-range',
-     label: ('52-Week Range').toUpperCase(), low: `$${quote.week52Low}`, high: `$${quote.week52High}`
+     label: ('52-Week Range').toUpperCase(), low: `$${quote.week52Low}`, high: `$${_.round(quote.week52High, 2)}`
     }
   ];
 

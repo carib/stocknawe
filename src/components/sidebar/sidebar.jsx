@@ -12,8 +12,6 @@ import './sidebar.css';
 import * as SVG from '../util/svg_util';
 
 const SideBar = () => {
-  let searchOpen = false;
-
   const showSearchBar = (state, actions) => {
     if (state.searchOpen) {
       return <SearchBar updateWatchList={ actions.updateWatchList } toggleSearchBar={ actions.toggleSearchBar }/>

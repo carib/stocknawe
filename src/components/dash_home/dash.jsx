@@ -8,25 +8,8 @@ import { AppContext } from '../../context_api';
 
 import './dash.css'
 
-const getGreeting = () => {
-  let hour = new Date().getHours();
-  let period;
-  if (hour < 12) {
-    period = 'morning'
-  } else if (_.inRange(hour, 12, 17)) {
-    period = 'afternoon'
-  } else if (_.inRange(hour, 17, 22)) {
-    period = 'evening'
-  } else {
-    period = 'night'
-  }
-  let greeting = `Good ${period}! :)`
-  return <div className="greeting-text">{greeting}</div>
-}
-
 export const Dashboard = () => (
   <div className="dash">
-    <div className="dash__greeting"></div>
     <DashCarousel />
   </div>
 )

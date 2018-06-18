@@ -50,7 +50,7 @@ const SearchResult = (props) => {
   if (viewIndex === 1 && quote.change < 0) {
     viewColor = 'negative';
   }
-  console.log(item);
+
   return (
     <div className="search-result" data-symbol={symbol} onClick={addToWatchList}>
       <div className="search-result__title">

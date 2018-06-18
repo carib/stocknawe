@@ -16,9 +16,10 @@
 
 .home-link {
   position: relative;
-  height: 4em;
-  width: 4em;
+  height: 3.5em;
+  width: 3.5em;
   margin-top: 0.17em;
+  margin-bottom: 0.2em;
   left: 4.65em;
   font-size: 1.1em;
   font-weight: 900;
@@ -28,7 +29,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 4em;
+  border-radius: 3.5em;
   box-shadow: inset 0px 0px 0px 1px var(--rest-shade);
   box-sizing: border-box;
 }
@@ -67,6 +68,7 @@
 
 .list-item__link {
   border-bottom: none;
+  background-color: transparent;
   box-sizing: border-box;
   border-radius: 5px;
   display: grid;
@@ -81,7 +83,7 @@
   box-shadow: 0px 0px 5px 0px var(--rest-shade);
   cursor: pointer;
   box-sizing: border-box;
-  transition: border-radius 500ms ease,
+  transition: border-radius 1000ms ease,
               transform, box-shadow 500ms ease;
   animation: fade-in 1000ms ease;
 }

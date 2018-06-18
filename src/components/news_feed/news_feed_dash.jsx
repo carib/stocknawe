@@ -37,7 +37,10 @@ class NewsFeed extends Component {
 
   fetchNews(stock, date) {
     const key = 'ff929253a79a40478359573471e7a68e';
-    const url = `https://newsapi.org/v2/everything?q=${stock.symbol},${stock.companyName}&language=en&to=${date}&sortBy=publishedAt&apikey=${key}`;
+    const url = `https://newsapi.org/v2/everything?q=${stock.symbol}` +
+                `&language=en&to=${date}` +
+                `&sortBy=popularity` +
+                `&apiKey=${key}`;
     fetch(url)
       .then(response => response.json())
       .then(json => {
