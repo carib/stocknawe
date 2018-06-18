@@ -1,3 +1,4 @@
+/* ******************************************* NEWS FEED MAIN */
 .news-feed {
   overflow-x: visible;
   overflow-y: scroll;
@@ -10,23 +11,41 @@
   font-family: 'Lato';
   width: 96%;
   padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   border-radius: 0px;
-  transform: none;
-  box-shadow: 0px 0px 5px 0px var(--rest-shade);
+  -webkit-transform: none;
+          transform: none;
+  -webkit-box-shadow: 0px 0px 5px 0px var(--rest-shade);
+          box-shadow: 0px 0px 5px 0px var(--rest-shade);
+  -webkit-transition: border-radius, -webkit-transform, -webkit-box-shadow 1000ms ease;
+  transition: border-radius, -webkit-transform, -webkit-box-shadow 1000ms ease;
   transition: border-radius, transform, box-shadow 1000ms ease;
+  transition: border-radius, transform, box-shadow 1000ms ease, -webkit-transform, -webkit-box-shadow 1000ms ease;
 }
 
 .feed-item:hover {
   z-index: 1;
-  transform: scale(1.005);
-  box-shadow: 0px 1px 20px 0px var(--float-shade);
+  -webkit-transform: scale(1.005);
+          transform: scale(1.005);
+  -webkit-box-shadow: 0px 1px 20px 0px var(--float-shade);
+          box-shadow: 0px 1px 20px 0px var(--float-shade);
   border-radius: 50px;
+  -webkit-transition: border-radius, -webkit-transform, -webkit-box-shadow 1000ms ease;
+  transition: border-radius, -webkit-transform, -webkit-box-shadow 1000ms ease;
   transition: border-radius, transform, box-shadow 1000ms ease;
+  transition: border-radius, transform, box-shadow 1000ms ease, -webkit-transform, -webkit-box-shadow 1000ms ease;
 }
 
+/* ******************************************* FEED ITEM MAIN */
 .feed-item__head {
   width: 100%;
   display: grid;
@@ -35,6 +54,13 @@
   font-weight: bold;
 }
 
+.feed-item__description {
+  padding-left: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* ******************************************* ITEM HEAD */
 .feed-item__title {
   font-size: 16px;
 }
@@ -45,10 +71,4 @@
 
 .feed-item__date {
   text-align: right;
-}
-
-.feed-item__description {
-  padding-left: 10px;
-  text-align: left;
-  font-size: 14px;
 }
