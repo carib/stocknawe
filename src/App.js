@@ -149,6 +149,7 @@ class App extends Component {
 
         <SideBar />
         <Switch>
+          <Route exact path='/' component={Dashboard}/>
           <Route path='/stocknawe' component={Dashboard}/>
           <Route path="/stocks/:symbol" component={StockView}/>
         </Switch>
