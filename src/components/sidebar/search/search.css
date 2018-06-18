@@ -1,15 +1,27 @@
-.not-search {
-  display: none;
-}
-
+/* ******************************************* SEARCH MAIN */
 .search-bar {
   position: absolute;
   top: 1.5em;
   right: 2em;
   width: 30em;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   grid-column: span 2 !important;
-  animation: fade-in 1000ms ease;
+  -webkit-animation: fade-in 1000ms ease;
+          animation: fade-in 1000ms ease;
+}
+
+.not-search {
+  display: none;
+}
+
+/* ******************************************* SEARCH BAR MAIN */
+.search-bar__form {
+  display: grid;
+  grid-template-columns: 12% 63% 25%;
+  background-color: white;
+  -webkit-box-shadow: 1px 0px 1px 0px var(--float-shade);
+          box-shadow: 1px 0px 1px 0px var(--float-shade);
 }
 
 .search-results {
@@ -20,23 +32,25 @@
   background-color: transparent;
 }
 
+/* ******************************************* FORM MAIN */
 .search-bar__icon {
   z-index: 1;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 0;
   padding-top: 2px;
   padding-left: 2px;
-  box-shadow: 1px 0px 5px 0px #b1b1b19c;
-}
-
-.search-bar__form {
-  display: grid;
-  grid-template-columns: 12% 63% 25%;
-  background-color: white;
-  box-shadow: 1px 0px 1px 0px var(--float-shade);
+  -webkit-box-shadow: 1px 0px 5px 0px #b1b1b19c;
+          box-shadow: 1px 0px 5px 0px #b1b1b19c;
 }
 
 .search-bar__input {
@@ -47,21 +61,34 @@
 .button__search {
   z-index: 1;
   background-color: white;
-  box-shadow: 0px 0px 5px 0px #b1b1b19c;
+  -webkit-box-shadow: 0px 0px 5px 0px #b1b1b19c;
+          box-shadow: 0px 0px 5px 0px #b1b1b19c;
+  -webkit-transition: background-color, -webkit-box-shadow 1000ms ease;
+  transition: background-color, -webkit-box-shadow 1000ms ease;
   transition: background-color, box-shadow 1000ms ease;
+  transition: background-color, box-shadow 1000ms ease, -webkit-box-shadow 1000ms ease;
 }
 
 .button__search:hover {
-  box-shadow: -2px 0px 10px 0px var(--float-shade);
+  -webkit-box-shadow: -2px 0px 10px 0px var(--float-shade);
+          box-shadow: -2px 0px 10px 0px var(--float-shade);
+  -webkit-transition: -webkit-box-shadow 500ms ease;
+  transition: -webkit-box-shadow 500ms ease;
   transition: box-shadow 500ms ease;
+  transition: box-shadow 500ms ease, -webkit-box-shadow 500ms ease;
 }
 
 .button__search:active {
-  box-shadow: 0px 0px 1px 0px #b1b1b19c;
+  -webkit-box-shadow: 0px 0px 1px 0px #b1b1b19c;
+          box-shadow: 0px 0px 1px 0px #b1b1b19c;
   background-color: #f5f5f52e;
+  -webkit-transition: background-color, -webkit-box-shadow 500ms ease;
+  transition: background-color, -webkit-box-shadow 500ms ease;
   transition: background-color, box-shadow 500ms ease;
+  transition: background-color, box-shadow 500ms ease, -webkit-box-shadow 500ms ease;
 }
 
+/* ******************************************* RESULTS MAIN */
 .search-list {
   z-index: 99;
   background-color: transparent;
@@ -74,21 +101,38 @@
   grid-gap: 0.15em;
 }
 
+/* ******************************************* RESULTS LIST */
 .search-result {
   display: grid;
   background-color: white;
   grid-template: 100% / 60% 25% 15%;
   margin-right: 2px;
   line-height: 3;
-  transform: none;
-  box-sizing: border-box;
-  box-shadow: 20px 20px 50px 0px var(--float-shade);
+  -webkit-transform: none;
+          transform: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 20px 20px 50px 0px var(--float-shade);
+          box-shadow: 20px 20px 50px 0px var(--float-shade);
   cursor: pointer;
   border-radius: 3px;
-  animation: result-fade-in 500ms ease;
+  -webkit-animation: result-fade-in 500ms ease;
+          animation: result-fade-in 500ms ease;
+  -webkit-transition: border-radius 1000ms ease,
+              -webkit-transform, -webkit-box-shadow 500ms ease;
+  transition: border-radius 1000ms ease,
+              -webkit-transform, -webkit-box-shadow 500ms ease;
   transition: border-radius 1000ms ease,
               transform, box-shadow 500ms ease;
+  transition: border-radius 1000ms ease,
+              transform, box-shadow 500ms ease,
+              -webkit-transform, -webkit-box-shadow 500ms ease;
 
+}
+
+@-webkit-keyframes result-fade-in {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
 }
 
 @keyframes result-fade-in {
@@ -96,39 +140,49 @@
   100% { opacity: 1; }
 }
 
-.last {
-  box-shadow: 0px 2px 10px 0px var(--float-shade);
-}
-
 .search-result:hover {
   z-index: 2;
-  transform: scale(1.005);
-  box-shadow: 0px 1px 20px 0px var(--float-shade);
+  -webkit-transform: scale(1.005);
+          transform: scale(1.005);
+  -webkit-box-shadow: 0px 1px 20px 0px var(--float-shade);
+          box-shadow: 0px 1px 20px 0px var(--float-shade);
   border-radius: 20px !important;
+  -webkit-transition: border-radius 250ms ease,
+              -webkit-transform, -webkit-box-shadow 250ms ease;
+  transition: border-radius 250ms ease,
+              -webkit-transform, -webkit-box-shadow 250ms ease;
   transition: border-radius 250ms ease,
               transform, box-shadow 250ms ease;
+  transition: border-radius 250ms ease,
+              transform, box-shadow 250ms ease,
+              -webkit-transform, -webkit-box-shadow 250ms ease;
 }
 
 .search-result:hover .search-result__detail {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
 
 .selected {
-  transform: scale(1.005);
+  -webkit-transform: scale(1.005);
+          transform: scale(1.005);
   border-radius: 20px;
+  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
-  box-shadow: 0px 2px 20px 3px var(--float-shade);
+  -webkit-box-shadow: 0px 2px 20px 3px var(--float-shade);
+          box-shadow: 0px 2px 20px 3px var(--float-shade);
 }
 
 .selected > .negative, .selected > .positive {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
 }
 
-
+/* ******************************************* RESULT MAIN */
 .search-result__title {
   text-align: left;
   font-weight: bold;
@@ -139,6 +193,20 @@
   text-overflow: clip;
 }
 
+.search-result__price {
+  text-align: center;
+}
+
+.search-result__detail {
+  z-index: 4;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 3px;
+  -webkit-transition: border-radius 1000ms ease;
+  transition: border-radius 1000ms ease;
+}
+
+/* ******************************************* RESULT TITLE */
 .search-result__symbol {
   font-size: 1em;
   line-height: 1.9;
@@ -150,72 +218,15 @@
   white-space: nowrap;
 }
 
-.search-result__price {
-  text-align: center;
-}
-
-
-.search-result__detail {
-  z-index: 4;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 3px;
-  transition: border-radius 1000ms ease;
-}
-
+/* ******************************************* RESULT DETAIL */
 .positive {
   /* background-color: var(--stock-pos); */
-  box-shadow: inset 0px 0px 0px 1px var(--stock-pos);
+  -webkit-box-shadow: inset 0px 0px 0px 1px var(--stock-pos);
+          box-shadow: inset 0px 0px 0px 1px var(--stock-pos);
 }
 
 .negative {
   /* background-color: var(--stock-neg); */
-  box-shadow: inset 0px 0px 0px 1px var(--stock-neg);
-}
-
-.watch-list__controls {
-  display: grid;
-  grid-template: 45px auto / auto;
-  box-shadow: 0px -1px 10px 1px var(--float-shade);
-}
-
-.button-wrap {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
-
-.button__watch-list {
-  height: 36px;
-  width: 36px;
-  z-index: 1;
-  margin-left: 10px;
-  box-sizing: border-box;
-  border-radius: 36px;
-  transform: none;
-  box-shadow: none;
-  transition: transform 500ms ease,
-              box-shadow 1000ms ease;
-}
-
-.button__watch-list:hover {
-  z-index: 2;
-  transform: scale(1.1);
-  transition: transform 400ms ease;
-}
-
-.more:hover {
-  box-shadow: 0px 0px 0px 1px var(--stock-pos);
-  transition: box-shadow 1000ms ease;
-}
-
-.less:hover {
-  box-shadow: 0px 0px 0px 1px var(--stock-neg);
-  transition: box-shadow 1000ms ease;
-}
-
-.list__buffer {
-  /* border-top: 1px solid var(--lt-border); */
+  -webkit-box-shadow: inset 0px 0px 0px 1px var(--stock-neg);
+          box-shadow: inset 0px 0px 0px 1px var(--stock-neg);
 }
