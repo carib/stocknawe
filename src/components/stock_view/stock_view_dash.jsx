@@ -45,27 +45,33 @@ const KeyStats = ({ quote }) => {
   const stats = [
     {
      className: 'open',
-     label: ('Open').toUpperCase(), datum: `$${quote.open}`
+     label: ('Open').toUpperCase(),
+     datum: `$${quote.open}`
     },
     {
      className: 'previous-close',
-     label: ('Previous Close').toUpperCase(), datum: `$${quote.previousClose}`
+     label: ('Previous Close').toUpperCase(),
+     datum: `$${quote.previousClose}`
     },
     {
      className: 'volume',
-     label: ('Latest Volume').toUpperCase(), datum: volume
+     label: ('Latest Volume').toUpperCase(),
+     datum: volume
     },
     {
      className: 'market-cap',
-     label: ('Market Cap').toUpperCase(), datum: `$${_.round(quote.marketCap / 1000000000)} B`
+     label: ('Market Cap').toUpperCase(),
+     datum: `$${_.round(quote.marketCap / 1000000000)} B`
     },
     {
      className: 'day-range',
-     label: ('1-Day Range').toUpperCase(), low: `$${quote.low}`, high: `$${_.round(quote.high, 2)}`
+     label: ('1-Day Range').toUpperCase(),
+     low: `$${quote.low}`, high: `$${_.round(quote.high, 2)}`
     },
     {
      className: 'year-range',
-     label: ('52-Week Range').toUpperCase(), low: `$${quote.week52Low}`, high: `$${_.round(quote.week52High, 2)}`
+     label: ('52-Week Range').toUpperCase(),
+     low: `$${quote.week52Low}`, high: `$${_.round(quote.week52High, 2)}`
     }
   ];
 
