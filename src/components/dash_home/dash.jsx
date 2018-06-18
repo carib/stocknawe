@@ -26,7 +26,7 @@ const getGreeting = () => {
 
 export const Dashboard = () => (
   <div className="dash">
-    <div className="dash__greeting">{getGreeting()}</div>
+    <div className="dash__greeting"></div>
     <DashCarousel />
   </div>
 )

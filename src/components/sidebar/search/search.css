@@ -1,12 +1,15 @@
-.not-search { display: none; }
+.not-search {
+  display: none;
+}
+
 .search-bar {
   position: absolute;
-  top: 8.8%;
-  left: 17%;
+  top: 1.5em;
+  right: 2em;
   width: 30em;
-  height: 34em;
   box-sizing: border-box;
   grid-column: span 2 !important;
+  animation: fade-in 1000ms ease;
 }
 
 .search-results {
@@ -26,14 +29,14 @@
   padding: 0;
   padding-top: 2px;
   padding-left: 2px;
-  box-shadow: 1px 0px 10px 0px #b1b1b19c;
+  box-shadow: 1px 0px 5px 0px #b1b1b19c;
 }
 
 .search-bar__form {
   display: grid;
   grid-template-columns: 12% 63% 25%;
   background-color: white;
-  box-shadow: 1px 0px 10px 0px var(--float-shade);
+  box-shadow: 1px 0px 1px 0px var(--float-shade);
 }
 
 .search-bar__input {
@@ -43,13 +46,20 @@
 
 .button__search {
   z-index: 1;
+  background-color: white;
   box-shadow: 0px 0px 5px 0px #b1b1b19c;
-  transition: box-shadow 500ms ease;
+  transition: background-color, box-shadow 1000ms ease;
 }
 
 .button__search:hover {
-  box-shadow: -2px 0px 20px 0px var(--float-shade);
+  box-shadow: -2px 0px 10px 0px var(--float-shade);
   transition: box-shadow 500ms ease;
+}
+
+.button__search:active {
+  box-shadow: 0px 0px 1px 0px #b1b1b19c;
+  background-color: #f5f5f52e;
+  transition: background-color, box-shadow 500ms ease;
 }
 
 .search-list {
@@ -71,11 +81,19 @@
   margin-right: 2px;
   line-height: 3;
   transform: none;
+  box-sizing: border-box;
   box-shadow: 20px 20px 50px 0px var(--float-shade);
   cursor: pointer;
   border-radius: 3px;
+  animation: result-fade-in 500ms ease;
   transition: border-radius 1000ms ease,
               transform, box-shadow 500ms ease;
+
+}
+
+@keyframes result-fade-in {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
 }
 
 .last {
@@ -107,6 +125,7 @@
 .selected > .negative, .selected > .positive {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  transition: all 250ms ease;
 }
 
 
@@ -146,12 +165,12 @@
 
 .positive {
   /* background-color: var(--stock-pos); */
-  box-shadow: 0px 0px 0px 1px var(--stock-pos);
+  box-shadow: inset 0px 0px 0px 1px var(--stock-pos);
 }
 
 .negative {
   /* background-color: var(--stock-neg); */
-  box-shadow: 0px 0px 0px 1px var(--stock-neg);
+  box-shadow: inset 0px 0px 0px 1px var(--stock-neg);
 }
 
 .watch-list__controls {

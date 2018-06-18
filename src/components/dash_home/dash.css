@@ -13,7 +13,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 1px 1px 0px var(--float-shade);
+  box-shadow: 2px 0px 1px 0px var(--float-shade);
 }
 
 .greeting-text {
@@ -28,13 +28,14 @@
 .dash__carousel {
   grid-row: 2 / span 11;
   display: grid;
-  margin-top: 15px;
+  margin-top: 5px;
   padding-left: 0.3em;
   padding-right: 0.5em;
   /* grid-column-gap: 5px; */
   grid-gap: 5px;
   overflow-y: scroll;
-  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(205px, 230px));
+  grid-auto-rows: 10em;
 }
 
 .dash__ticker {
@@ -53,6 +54,12 @@
   box-shadow: 0px 0px 5px 0px var(--rest-shade);
   transition: transform, box-shadow 500ms ease,
               border-radius 1000ms ease;
+  animation: fade-in 1000ms ease;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 .dash-widget-selected {
@@ -65,7 +72,7 @@
 .dash-widget__link {
   grid-row: span 2;
   max-height: 300px;
-  margin-top: 20px;
+  margin-top: 2px;
   margin-bottom: 1px;
   grid-column: span 1;
 }

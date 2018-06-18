@@ -21,6 +21,31 @@ class SearchBar extends React.Component {
 
   componentDidMount = () => {
     this.fetchAvailable();
+    const searchBarInput = document.getElementsByClassName('search-bar__input')[0]
+    searchBarInput.addEventListener('keydown', (e) => {
+      const results = document.getElementsByClassName('search-list')[0]
+      const selected = document.getElementsByClassName('selected')[0]
+      if ([38, 40].includes(e.keyCode) && results) {
+        let nextSelected
+        if (e.keyCode === 38) {
+          if (selected) {
+            nextSelected = selected.previousElementSibling || results.lastChild
+            selected.classList.remove('selected')
+          } else {
+            nextSelected = results.lastChild
+          }
+        }
+        if (e.keyCode === 40) {
+          if (selected) {
+            nextSelected = selected.nextElementSibling || results.firstChild
+            selected.classList.remove('selected')
+          } else {
+            nextSelected = results.firstChild
+          }
+        }
+        nextSelected.classList.add('selected')
+      }
+    })
   }
 
   fetchAvailable = () => {
@@ -79,7 +104,7 @@ class SearchBar extends React.Component {
   }
 
   showSearchResults = () => {
-    if (this.state.newResults) {
+    if (this.state.newResults && this.state.searchQuery) {
       return (
         <div className="search-results">
           <SearchResults />
@@ -92,6 +117,18 @@ class SearchBar extends React.Component {
     e.preventDefault()
     const stock = e.currentTarget.dataset.symbol
     this.props.updateWatchList(stock)
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const results = document.getElementsByClassName('search-list')[0]
+    if (results) {
+      const selected = _.find(results.children, (result) => result.classList.contains('selected'))
+      if (selected) {
+        this.props.updateWatchList(selected.dataset.symbol)
+      }
+    }
+    this.props.toggleSearchBar()
   }
 
   render() {
@@ -107,7 +144,7 @@ class SearchBar extends React.Component {
           }}>
 
         <div className='search-bar'>
-          <form className='search-bar__form'>
+          <form className='search-bar__form' onSubmit={this.handleSubmit}>
             <div className="search-bar__icon">
               <SVG.SearchIcon />
             </div>

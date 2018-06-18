@@ -26,11 +26,10 @@ class App extends Component {
 
   componentDidMount = () => {
     this.fetchStocksData();
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keypress', (e) => {
       if (!this.state.searchOpen) {
         this.toggleSearchBar();
       }
-
     })
   }
 
@@ -38,6 +37,31 @@ class App extends Component {
     stock = { symbols: [stock] };
     this.fetchStocksData(stock);
     this.toggleSearchBar();
+  }
+
+  toggleRemovalAlert = () => {
+    const list = document.getElementsByClassName('list')[0]
+    _.map(list.children, (item) => {
+      if (item.firstChild.classList.contains('selected')) {
+        item.firstChild.classList.remove('selected')
+      }
+      if (item.firstChild.classList.contains('removal-alert')) {
+        item.firstChild.classList.remove('removal-alert')
+      } else {
+        item.firstChild.classList.add('removal-alert')
+      }
+    })
+  }
+
+  removeStockFromList = (stock) => {
+    let newList = _.merge({}, this.state.watchList)
+    if (_.keys(this.state.watchList).includes(stock)) {
+      delete newList[stock]
+      this.setState({
+        watchList: newList
+      })
+      this.toggleRemovalAlert()
+    }
   }
 
   fetchStocksData = (options) => {
@@ -90,16 +114,20 @@ class App extends Component {
     let selected = document.getElementsByClassName('selected')[0];
     let nextSelected = Array.from(document.getElementsByName(symbol));
     _.each(nextSelected, (node) => node.classList.add('selected'));
-    if (selected) {
-      selected.classList.remove('selected');
-    }
-    this.setState((state, props) => {
-      return {
-        ...state,
-        selectedStock: this.state.watchList[symbol],
-        onView: true,
+    if (e.currentTarget.classList.contains('removal-alert')) {
+      this.removeStockFromList(symbol)
+    } else {
+      if (selected) {
+        selected.classList.remove('selected');
       }
-    })
+      this.setState((state, props) => {
+        return {
+          ...state,
+          selectedStock: this.state.watchList[symbol],
+          onView: true,
+        }
+      })
+    }
   }
 
   render = () => {
@@ -115,6 +143,7 @@ class App extends Component {
               removeSelected: event => this.removeSelected(event),
               fetchStocksData: event => this.fetchStocksData(event),
               updateWatchList: event => this.updateWatchList(event),
+              toggleRemovalAlert: event => this.toggleRemovalAlert(event),
             }
           }}>
 

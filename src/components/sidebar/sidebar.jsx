@@ -16,7 +16,7 @@ const SideBar = () => {
 
   const showSearchBar = (state, actions) => {
     if (state.searchOpen) {
-      return <SearchBar updateWatchList={ actions.updateWatchList } />
+      return <SearchBar updateWatchList={ actions.updateWatchList } toggleSearchBar={ actions.toggleSearchBar }/>
     } else {
       return <div className="not-search"></div>
     }
@@ -33,13 +33,13 @@ const SideBar = () => {
         return (
           <div className="sidebar">
             <header className="sidebar-header">
-              <Link to='/' onClick={actions.removeSelected}>
                 <div className='home-link'>
+                  <Link to='/' onClick={actions.removeSelected}>
                   <div className="app-name-1">STOCK</div>
                   <div className="app-name-2">- n -</div>
                   <div className="app-name-3">AWE</div>
+                </Link>
                 </div>
-              </Link>
             </header>
             <div className='watch-list'>
               <WatchList />
@@ -48,7 +48,7 @@ const SideBar = () => {
                   <button className="button__watch-list more" onClick={actions.toggleSearchBar}>
                     <SVG.moreButton />
                   </button>
-                  <button className="button__watch-list less" onClick={this.handleClick}>
+                  <button className="button__watch-list less" onClick={actions.toggleRemovalAlert}>
                     <SVG.lessButton />
                   </button>
                 </div>

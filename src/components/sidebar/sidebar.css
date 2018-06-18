@@ -11,23 +11,26 @@
 .sidebar-header{
   grid-column: span 1;
   grid-row: span 1;
-  box-shadow: -2px 1px 1px 0px var(--float-shade);
+  box-shadow: -2px 0px 1px 0px var(--float-shade);
 }
 
 .home-link {
   position: relative;
-  height: 70%;
-  width: 46%;
-  margin-top: 0.49em;
-  left: 25%;
-  font-size: 1em;
+  height: 4em;
+  width: 4em;
+  margin-top: 0.17em;
+  left: 4.65em;
+  font-size: 1.1em;
   font-weight: 900;
   letter-spacing: 0.1em;
-  color: white;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 4em;
+  box-shadow: inset 0px 0px 0px 1px var(--rest-shade);
+  box-sizing: border-box;
 }
 
 .watch-list {
@@ -64,6 +67,7 @@
 
 .list-item__link {
   border-bottom: none;
+  box-sizing: border-box;
   border-radius: 5px;
   display: grid;
 }
@@ -76,8 +80,14 @@
   transform: none;
   box-shadow: 0px 0px 5px 0px var(--rest-shade);
   cursor: pointer;
+  box-sizing: border-box;
   transition: border-radius 500ms ease,
               transform, box-shadow 500ms ease;
+  animation: fade-in 1000ms ease;
+}
+
+.removal-alert {
+  background-color: #f1baba;
 }
 
 .last {
@@ -143,7 +153,7 @@
 .watch-list__controls {
   display: grid;
   grid-template: 45px auto / auto;
-  box-shadow: 0px -1px 10px 1px var(--float-shade);
+  box-shadow: 0px 0px 1px 0px var(--float-shade);
 }
 
 .button-wrap {
@@ -178,9 +188,21 @@
   transition: box-shadow 1000ms ease;
 }
 
+.more:active {
+  box-shadow: inset 0px 0px 10px 0px var(--stock-pos);
+  opacity: 0.6;
+  transition: opacity, box-shadow 500ms ease;
+}
+
 .less:hover {
   box-shadow: 0px 0px 0px 1px var(--stock-neg);
   transition: box-shadow 1000ms ease;
+}
+
+.less:active {
+  box-shadow: inset 0px 0px 10px 0px var(--stock-neg);
+  opacity: 0.6;
+  transition: opacity, box-shadow 500ms ease;
 }
 
 .list__buffer {
