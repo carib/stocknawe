@@ -32,7 +32,7 @@ const SideBar = () => {
           <div className="sidebar">
             <header className="sidebar-header">
                 <div className='home-link'>
-                  <Link to='/' onClick={actions.removeSelected}>
+                  <Link to='/stocknawe' onClick={actions.removeSelected}>
                   <div className="app-name-1">STOCK</div>
                   <div className="app-name-2">- n -</div>
                   <div className="app-name-3">AWE</div>

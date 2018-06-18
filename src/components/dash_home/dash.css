@@ -9,12 +9,22 @@
 
 .dash__greeting {
   grid-row: 1 / span 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: left;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
   text-indent: 1em;
-  align-items: center;
-  box-shadow: 2px 0px 1px 0px var(--float-shade);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 2px 0px 1px 0px var(--float-shade);
+          box-shadow: 2px 0px 1px 0px var(--float-shade);
 }
 
 .greeting-text {
@@ -32,7 +42,6 @@
   margin-top: 5px;
   padding-left: 0.3em;
   padding-right: 0.5em;
-  /* grid-column-gap: 5px; */
   grid-gap: 5px;
   overflow-y: scroll;
   grid-template-columns: repeat(auto-fit, minmax(205px, 230px));
@@ -42,7 +51,8 @@
 .dash__ticker {
   display: none;
   grid-row: 12 / span 1;
-  box-shadow: 0px -2px 20px 5px var(--rest-shade);
+  -webkit-box-shadow: 0px -2px 20px 5px var(--rest-shade);
+          box-shadow: 0px -2px 20px 5px var(--rest-shade);
 }
 
 /* ******************************************* CAROUSEL */
@@ -51,11 +61,23 @@
   display: grid;
   grid-template-rows: repeat(20, 1em);
   border-radius: 3px;
-  transform: none;
-  box-shadow: 0px 0px 5px 0px var(--rest-shade);
+  -webkit-transform: none;
+          transform: none;
+  -webkit-box-shadow: 0px 0px 5px 0px var(--rest-shade);
+          box-shadow: 0px 0px 5px 0px var(--rest-shade);
+  -webkit-transition: border-radius 1000ms ease, -webkit-transform, -webkit-box-shadow 500ms ease;
+  transition: border-radius 1000ms ease, -webkit-transform, -webkit-box-shadow 500ms ease;
   transition: transform, box-shadow 500ms ease,
               border-radius 1000ms ease;
-  animation: fade-in 1000ms ease;
+  transition: transform, box-shadow 500ms ease,
+              border-radius 1000ms ease, -webkit-transform, -webkit-box-shadow 500ms ease;
+  -webkit-animation: fade-in 1000ms ease;
+          animation: fade-in 1000ms ease;
+}
+
+@-webkit-keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes fade-in {
@@ -80,16 +102,23 @@
 
 .dash-widget:hover {
   z-index: 2;
-  transform: scale(1.005);
-  box-shadow: 0px 1px 20px 0px var(--float-shade);
+  -webkit-transform: scale(1.005);
+          transform: scale(1.005);
+  -webkit-box-shadow: 0px 1px 20px 0px var(--float-shade);
+          box-shadow: 0px 1px 20px 0px var(--float-shade);
   border-radius: 20px;
+  -webkit-transition: border-radius 500ms ease, -webkit-transform, -webkit-box-shadow 500ms ease;
+  transition: border-radius 500ms ease, -webkit-transform, -webkit-box-shadow 500ms ease;
   transition: transform, box-shadow 500ms ease,
               border-radius 500ms ease;
+  transition: transform, box-shadow 500ms ease,
+              border-radius 500ms ease, -webkit-transform, -webkit-box-shadow 500ms ease;
 }
 
 .dash-widget:hover .dash-widget__indicator {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  -webkit-transition: border-radius 500ms ease;
   transition: border-radius 500ms ease;
 }
 
@@ -104,9 +133,15 @@
 }
 
 .dash-widget__mini-chart {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   grid-row: 11 / span 10;
 }
 
@@ -150,7 +185,9 @@
   border-top-left-radius: 2px;
   grid-column: 1 / span 12;
   grid-row: 1 / span 3;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: border-radius 1000ms ease;
   transition: border-radius 1000ms ease;
 }
 

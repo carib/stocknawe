@@ -71,8 +71,8 @@ class App extends Component {
       range: ['1m'],
       last: 5
     }
-    options = _.merge({}, defaults, options);
-    const { symbols, types, range, last } = options;
+    options = _.merge({}, defaults, options)
+    const { symbols, types, range, last } = options
     const url = `https://api.iextrading.com/1.0/stock/market/batch?` +
                 `symbols=${_.size(symbols) > 1 ? symbols.join('%2C') : symbols[0]}` +
                 `&types=${_.size(types) > 1 ? types.join('%2C') : types[0]}` +
@@ -93,15 +93,15 @@ class App extends Component {
   }
 
   rotateView = () => {
-    const { viewIndex } = this.state;
-    const maxIndex = 2;
-    let newIndex = (viewIndex === maxIndex) ? 0 : viewIndex + 1;
-    this.setState({ viewIndex: newIndex });
+    const { viewIndex } = this.state
+    const maxIndex = 2
+    let newIndex = (viewIndex === maxIndex) ? 0 : viewIndex + 1
+    this.setState({ viewIndex: newIndex })
   }
 
   toggleSearchBar = (e) => {
     if (e) e.preventDefault();
-    this.setState({ searchOpen: !this.state.searchOpen });
+    this.setState({ searchOpen: !this.state.searchOpen })
   }
 
   removeSelected = (e) => {
@@ -149,7 +149,7 @@ class App extends Component {
 
         <SideBar />
         <Switch>
-          <Route exact path='/' component={Dashboard}/>
+          <Route path='/stocknawe' component={Dashboard}/>
           <Route path="/stocks/:symbol" component={StockView}/>
         </Switch>
       </AppContext.Provider>

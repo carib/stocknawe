@@ -1,37 +1,28 @@
+/* ******************************************* SIDEBAR MAIN */
 .sidebar {
   grid-row: 1 / span 8;
   display: grid;
   grid-template-rows: repeat(12, 1fr);
   grid-template-columns: 240px;
   background-color: transparent;
-  box-sizing: border-box;
-  box-shadow: 0px 0px 1px 0px var(--float-shade);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0px 0px 1px 0px var(--float-shade);
+          box-shadow: 0px 0px 1px 0px var(--float-shade);
 }
 
 .sidebar-header{
   grid-column: span 1;
   grid-row: span 1;
-  box-shadow: -2px 0px 1px 0px var(--float-shade);
+  -webkit-box-shadow: -2px 0px 1px 0px var(--float-shade);
+          box-shadow: -2px 0px 1px 0px var(--float-shade);
 }
 
-.home-link {
-  position: relative;
-  height: 3.5em;
-  width: 3.5em;
-  margin-top: 0.17em;
-  margin-bottom: 0.2em;
-  left: 4.65em;
-  font-size: 1.1em;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 3.5em;
-  box-shadow: inset 0px 0px 0px 1px var(--rest-shade);
-  box-sizing: border-box;
+.watch-list__search {
+  z-index: 1;
+  grid-row: 2 / span 1;
+  -webkit-box-shadow: -1px 1px 5px 0px var(--float-shade);
+          box-shadow: -1px 1px 5px 0px var(--float-shade);
 }
 
 .watch-list {
@@ -45,16 +36,39 @@
   grid-auto-rows: 1fr;
 }
 
-.closed {
-  display: none;
+ /* ******************************************* HEADER MAIN */
+.home-link {
+  position: relative;
+  height: 3.5em;
+  width: 3.5em;
+  margin-top: 0.17em;
+  margin-bottom: 0.2em;
+  left: 4.65em;
+  font-size: 1.1em;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 3.5em;
+  -webkit-box-shadow: inset 0px 0px 0px 1px var(--rest-shade);
+          box-shadow: inset 0px 0px 0px 1px var(--rest-shade);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-.watch-list__search {
-  z-index: 1;
-  grid-row: 2 / span 1;
-  box-shadow: -1px 1px 5px 0px var(--float-shade);
-}
-
+ /* *******************************************  WATCHLIST MAIN */
 .list {
   background-color: transparent;
   padding-top: 5px;
@@ -66,10 +80,19 @@
   grid-gap: 0.3em;
 }
 
+.watch-list__controls {
+  display: grid;
+  grid-template: 45px auto / auto;
+  -webkit-box-shadow: 0px 0px 1px 0px var(--float-shade);
+          box-shadow: 0px 0px 1px 0px var(--float-shade);
+}
+
+/* *******************************************  LIST MAIN */
 .list-item__link {
   border-bottom: none;
   background-color: transparent;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 5px;
   display: grid;
 }
@@ -79,43 +102,59 @@
   grid-template: 100% / 20% 50% 30%;
   margin-right: 2px;
   line-height: 1.8;
-  transform: none;
-  box-shadow: 0px 0px 5px 0px var(--rest-shade);
+  -webkit-transform: none;
+          transform: none;
+  -webkit-box-shadow: 0px 0px 5px 0px var(--rest-shade);
+          box-shadow: 0px 0px 5px 0px var(--rest-shade);
   cursor: pointer;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: border-radius 1000ms ease,
+              -webkit-transform, -webkit-box-shadow 500ms ease;
+  transition: border-radius 1000ms ease,
+              -webkit-transform, -webkit-box-shadow 500ms ease;
   transition: border-radius 1000ms ease,
               transform, box-shadow 500ms ease;
-  animation: fade-in 1000ms ease;
+  transition: border-radius 1000ms ease,
+              transform, box-shadow 500ms ease,
+              -webkit-transform, -webkit-box-shadow 500ms ease;
+  -webkit-animation: fade-in 1000ms ease;
+          animation: fade-in 1000ms ease;
 }
 
-.removal-alert {
-  background-color: #f1baba;
-}
-
-.last {
-  box-shadow: 0px 2px 10px 0px var(--float-shade);
+.list-item.selected {
+  -webkit-transform: scale(1.005);
+          transform: scale(1.005);
+  border-radius: 20px;
+  -webkit-transition: all 250ms ease;
+  transition: all 250ms ease;
+  -webkit-box-shadow: 0px 2px 20px 3px var(--float-shade);
+          box-shadow: 0px 2px 20px 3px var(--float-shade);
 }
 
 .list-item:hover {
   z-index: 2;
-  transform: scale(1.005);
-  box-shadow: 0px 1px 20px 0px var(--float-shade);
+  -webkit-transform: scale(1.005);
+          transform: scale(1.005);
+  -webkit-box-shadow: 0px 1px 20px 0px var(--float-shade);
+          box-shadow: 0px 1px 20px 0px var(--float-shade);
   border-radius: 20px !important;
+  -webkit-transition: border-radius 250ms ease,
+              -webkit-transform, -webkit-box-shadow 250ms ease;
+  transition: border-radius 250ms ease,
+              -webkit-transform, -webkit-box-shadow 250ms ease;
   transition: border-radius 250ms ease,
               transform, box-shadow 250ms ease;
+  transition: border-radius 250ms ease,
+              transform, box-shadow 250ms ease,
+              -webkit-transform, -webkit-box-shadow 250ms ease;
 }
 
 .list-item:hover .list-item__detail {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  -webkit-transition: all 250ms ease;
   transition: all 250ms ease;
-}
-
-.list-item.selected {
-  transform: scale(1.005);
-  border-radius: 20px;
-  transition: all 250ms ease;
-  box-shadow: 0px 2px 20px 3px var(--float-shade);
 }
 
 .list-item.selected > .negative, .selected > .positive {
@@ -123,6 +162,12 @@
   border-bottom-right-radius: 20px;
 }
 
+.last {
+  -webkit-box-shadow: 0px 2px 10px 0px var(--float-shade);
+          box-shadow: 0px 2px 10px 0px var(--float-shade);
+}
+
+/* ******************************************* LIST ITEM MAIN */
 .list-item__title {
   text-align: left;
   font-weight: bold;
@@ -133,37 +178,31 @@
   text-align: center;
 }
 
-
 .list-item__detail {
   z-index: 4;
   text-align: center;
   cursor: pointer;
   border-radius: 3px;
+  -webkit-transition: border-radius 1000ms ease;
   transition: border-radius 1000ms ease;
 }
 
-.positive {
-  /* background-color: var(--stock-pos); */
-  box-shadow: 0px 0px 0px 1px var(--stock-pos);
-}
-
-.negative {
-  /* background-color: var(--stock-neg); */
-  box-shadow: 0px 0px 0px 1px var(--stock-neg);
-}
-
-.watch-list__controls {
-  display: grid;
-  grid-template: 45px auto / auto;
-  box-shadow: 0px 0px 1px 0px var(--float-shade);
-}
-
+/* ******************************************* CONTROLS MAIN */
 .button-wrap {
   margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .button__watch-list {
@@ -171,42 +210,87 @@
   width: 36px;
   z-index: 1;
   margin-left: 10px;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   border-radius: 36px;
-  transform: none;
-  box-shadow: none;
+  -webkit-transform: none;
+          transform: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transition: -webkit-transform 500ms ease,
+              -webkit-box-shadow 1000ms ease;
+  transition: -webkit-transform 500ms ease,
+              -webkit-box-shadow 1000ms ease;
   transition: transform 500ms ease,
               box-shadow 1000ms ease;
+  transition: transform 500ms ease,
+              box-shadow 1000ms ease,
+              -webkit-transform 500ms ease,
+              -webkit-box-shadow 1000ms ease;
 }
 
 .button__watch-list:hover {
   z-index: 2;
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: -webkit-transform 400ms ease;
+  transition: -webkit-transform 400ms ease;
   transition: transform 400ms ease;
+  transition: transform 400ms ease, -webkit-transform 400ms ease;
 }
 
+/* ******************************************* LIST ITEM DETAIL */
+.positive {
+  /* background-color: var(--stock-pos); */
+  -webkit-box-shadow: 0px 0px 0px 1px var(--stock-pos);
+          box-shadow: 0px 0px 0px 1px var(--stock-pos);
+}
+
+.negative {
+  /* background-color: var(--stock-neg); */
+  -webkit-box-shadow: 0px 0px 0px 1px var(--stock-neg);
+          box-shadow: 0px 0px 0px 1px var(--stock-neg);
+}
+
+.removal-alert {
+  background-color: #f1baba;
+}
+
+/* ******************************************* CONTROLS BUTTONS */
 .more:hover {
-  box-shadow: 0px 0px 0px 1px var(--stock-pos);
+  -webkit-box-shadow: 0px 0px 0px 1px var(--stock-pos);
+          box-shadow: 0px 0px 0px 1px var(--stock-pos);
+  -webkit-transition: -webkit-box-shadow 1000ms ease;
+  transition: -webkit-box-shadow 1000ms ease;
   transition: box-shadow 1000ms ease;
+  transition: box-shadow 1000ms ease, -webkit-box-shadow 1000ms ease;
 }
 
 .more:active {
-  box-shadow: inset 0px 0px 10px 0px var(--stock-pos);
+  -webkit-box-shadow: inset 0px 0px 10px 0px var(--stock-pos);
+          box-shadow: inset 0px 0px 10px 0px var(--stock-pos);
   opacity: 0.6;
+  -webkit-transition: opacity, -webkit-box-shadow 500ms ease;
+  transition: opacity, -webkit-box-shadow 500ms ease;
   transition: opacity, box-shadow 500ms ease;
+  transition: opacity, box-shadow 500ms ease, -webkit-box-shadow 500ms ease;
 }
 
 .less:hover {
-  box-shadow: 0px 0px 0px 1px var(--stock-neg);
+  -webkit-box-shadow: 0px 0px 0px 1px var(--stock-neg);
+          box-shadow: 0px 0px 0px 1px var(--stock-neg);
+  -webkit-transition: -webkit-box-shadow 1000ms ease;
+  transition: -webkit-box-shadow 1000ms ease;
   transition: box-shadow 1000ms ease;
+  transition: box-shadow 1000ms ease, -webkit-box-shadow 1000ms ease;
 }
 
 .less:active {
-  box-shadow: inset 0px 0px 10px 0px var(--stock-neg);
+  -webkit-box-shadow: inset 0px 0px 10px 0px var(--stock-neg);
+          box-shadow: inset 0px 0px 10px 0px var(--stock-neg);
   opacity: 0.6;
+  -webkit-transition: opacity, -webkit-box-shadow 500ms ease;
+  transition: opacity, -webkit-box-shadow 500ms ease;
   transition: opacity, box-shadow 500ms ease;
-}
-
-.list__buffer {
-  /* border-top: 1px solid var(--lt-border); */
+  transition: opacity, box-shadow 500ms ease, -webkit-box-shadow 500ms ease;
 }
