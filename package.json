@@ -2,10 +2,9 @@
   "name": "stocknaw",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://carib.github.io/stocknawe",
+  "homepage" : "http://carib.github.io/stocknawe",
   "dependencies": {
     "chart.js": "^2.7.2",
-    "gh-pages": "^1.2.0",
     "react": "^16.4.0",
     "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.4.0",
